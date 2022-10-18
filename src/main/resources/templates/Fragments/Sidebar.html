@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:fragment="sidebar">
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{thong-ke}">
+                <i class="bi bi-grid"></i>
+                <span>Thống kê</span>
+            </a>
+        </li>
+        <!-- End Dashboard Nav -->
+
+        <li class="nav-item">
+            <a
+                    class="nav-link collapsed"
+                    data-bs-target="#components-nav"
+                    data-bs-toggle="collapse"
+                    href="#"
+            >
+                <i class="bi bi-menu-button-wide"></i><span>Hàng hóa</span
+            ><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul
+                    id="components-nav"
+                    class="nav-content collapse"
+                    data-bs-parent="#sidebar-nav"
+            >
+                <li>
+                    <a th:href="@{/hang-hoa/laptop}">
+                        <i class="bi bi-circle"></i><span>Laptop</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/hang-hoa/pc}">
+                        <i class="bi bi-circle"></i><span>PC</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/hang-hoa/man-hinh}">
+                        <i class="bi bi-circle"></i><span>Màn hình</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/hang-hoa/tai-nghe}">
+                        <i class="bi bi-circle"></i><span>Tai Nghe</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/hang-hoa/ban-phim}">
+                        <i class="bi bi-circle"></i><span>Bàn phím</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/hang-hoa/chuot}">
+                        <i class="bi bi-circle"></i><span>Chuột</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/hang-hoa/loa}">
+                        <i class="bi bi-circle"></i><span>Loa</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- End Components Nav -->
+
+        <li class="nav-item">
+            <a
+                    class="nav-link collapsed"
+                    data-bs-target="#forms-nav"
+                    data-bs-toggle="collapse"
+                    href="#"
+            >
+                <i class="bi bi-journal-text"></i><span>Nhập xuất hàng</span
+            ><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul
+                    id="forms-nav"
+                    class="nav-content collapse"
+                    data-bs-parent="#sidebar-nav"
+            >
+                <li>
+                    <a th:href="@{/xuat-nhap/tao-phieu}">
+                        <i class="bi bi-circle"></i><span>Tạo phiếu xuất, nhập kho</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/xuat-nhap/lich-su-nhap}">
+                        <i class="bi bi-circle"></i><span>Lịch sử nhập kho</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/xuat-nhap/lich-su-xuat}">
+                        <i class="bi bi-circle"></i><span>Lịch sử xuất kho</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- End Forms Nav -->
+
+        <li class="nav-heading">Cá nhân</li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" th:href="@{/ho-so}">
+                <i class="bi bi-person"></i>
+                <span>Hồ sơ</span>
+            </a>
+        </li>
+        <!-- End Profile Page Nav -->
+
+        <li class="nav-item" sec:authorize="hasAnyRole('ROLE_ADMIN')">
+            <a class="nav-link collapsed" th:href="@{/quan-ly}">
+                <i class="bi bi-file-earmark"></i>
+                <span>Quản lý nhân viên</span>
+            </a>
+        </li>
+        <!-- End Blank Page Nav -->
+    </ul>
+</aside>
+<!-- End Sidebar-->
+</body>
+</html>

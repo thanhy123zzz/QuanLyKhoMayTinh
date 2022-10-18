@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+  <head>
+    <title>Hàng hóa / PC</title>
+  </head>
+
+  <body>
+
+    <main layout:fragment="content" id="main" class="main">
+      <div class="pagetitle">
+        <h1>PC</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Trang chủ</a></li>
+            <li class="breadcrumb-item">Hàng hóa</li>
+            <li class="breadcrumb-item active">PC</li>
+          </ol>
+        </nav>
+      </div>
+      <!-- End Page Title -->
+
+      <section class="section">
+        <div
+          style="margin-bottom: 20px; display: flex; justify-content: flex-end"
+        >
+          <a href="#addModal" class="btn btn-success">
+            <span>Thêm Sản Phẩm</span></a
+          >
+        </div>
+        <div class="product" style="display: flex; flex-wrap: wrap">
+        
+          <ul>
+            <div class="card">
+              <div
+                class="profile-card pt-4 d-flex flex-column"
+                style="padding: 0 10px 0 10px"
+              >
+                <img
+                  style="width: 300px; height: 250px"
+                  src="/assets/img/product-5.jpg"
+                />
+                <h5 style="margin-top: 10px">Tai nghe hiperx</h5>
+            
+                <h6>Giá: 12000000đ</h6>
+                <div style="display: flex; justify-content: space-between">
+                <h6>Còn: 40</h6>
+                <label for="" style="display: none;"> hết hàng</label>
+                </div>
+                <div
+                  class="social-links"
+                  style="display: flex; justify-content: space-between"
+                >
+                  <div>
+                    <a href="#editModal" class="chinhsua"
+                      ><i class="bi bi-pencil-square"></i
+                    ></a>
+                    <a href="#" class="Xoa"><i class="bi bi-trash"></i></a>
+                  </div>
+                  <a href="../ChiTietHangHoa/CTLap.html" class="chitiet"><i class="=">Chi tiết</i></a>
+                </div>
+              </div>
+            </div>
+          </ul>
+     
+        </div>
+        <div >
+          <a href="" style="          
+          display: block;           
+          margin: 5px auto 15px;
+          padding: 15px 20px;
+          text-align: center;" ><i>Xem thêm>>></i></a>
+      </div>   
+        <div id="addModal" class="modal">
+          <a href="#" class="fade" style="position: fixed;"></a>
+          <div class="modal-dialog1" style="width: 680px; margin-left: auto; margin-right: auto;" >
+            
+              <div class="modal-content">
+               
+                  <form action="" method="get">
+                      <div class="modal-header">						
+                          <h4 class="modal-title">Thêm sản phẩm</h4>
+                          <a class="close" data-dismiss="modal" href="#">&times;</a>
+                      </div>
+                      <div class="modal-body">	
+                        <div class="form-group" style="display: flex; ">
+                          <div>
+                          <label style="margin-bottom: 70px;">Hình ảnh</label>
+                          <input name="hinhanh" class="form-control" type="file" id="Fileimage" onchange="chooseFile(this)" accept="image/gif image/png image/jpeg">
+                          </div>
+                          <div style="max-width: 300px; max-height:250px; margin-left: 10px;">
+                              <img src="" alt="" width="300px" height="250px" id="image">
+                          </div>
+                        </div>		
+                          
+                          <div class="form-group">
+                              <label>Tên hàng hóa</label>
+                              <input name="name" type="text" class="form-control" required>
+                          </div>
+                          <div class="form-group">
+                              <label>Hãng sản xuất</label>
+                              <input name="type" type="text" class="form-control" required>
+                          </div>
+                          <div class="form-group">
+                              <label>Giá</label>
+                              <input name="price" class="form-control" required></input>
+                          </div>
+                          <div class="form-group">
+                              <label>Trọng lượng</label>
+                              <input name="image" class="form-control" required></input>
+                          </div>  
+                          <div class="form-group">
+                            <label>Hệ điều hành</label>
+                            <input name="image" class="form-control" required></input>
+                          </div> 
+                          <div class="form-group">
+                            <label>Webcam</label>
+                            <input name="image" class="form-control" required></input>
+                          </div> 
+                          <div class="form-group">
+                            <label>RAM</label>
+                            <input name="image" class="form-control" required></input>
+                          </div> 
+                          <div class="form-group">
+                            <label>CPU</label>
+                            <input name="image" class="form-control" required></input>
+                          </div> 
+                          <div class="form-group">
+                            <label>GPU</label>
+                            <input name="image" class="form-control" required></input>
+                          </div>   
+                          <div class="form-group">
+                            <label>Card</label>
+                            <input name="image" class="form-control" required></input>
+                          </div>
+                          <div class="form-group">
+                            <label>SSD</label>
+                            <input name="image" class="form-control" required></input>
+                          </div>   
+                          <div class="form-group">
+                            <label>HDD</label>
+                            <input name="image" class="form-control" required></input>
+                          </div> 
+                          <div class="form-group">
+                            <label>Màn hình</label>
+                            <input name="image" class="form-control" required></input>
+                          </div> 
+                          <div class="form-group">
+                            <label>Main</label>
+                            <input name="image" class="form-control" required></input>
+                          </div>  
+                          <div class="form-group">
+                            <label>Số lượng còn</label>
+                            <input name="image" class="form-control" required></input>
+                          </div>          
+                      </div>
+                      <div class="modal-footer">
+                  
+                          <input type="submit" class="btn btn-success" value="Thêm">
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+      <div id="editModal" class="modal">
+        <a href="#" class="fade" style="position: fixed;"></a>
+        <div class="modal-dialog1" style="width: 680px; margin-left: auto; margin-right: auto;" >
+          
+            <div class="modal-content">
+             
+                <form action="" method="get">
+                    <div class="modal-header">						
+                        <h4 class="modal-title">Chỉnh sửa thông tin</h4>
+                        <a class="close" data-dismiss="modal" href="#">&times;</a>
+                    </div>
+                    <div class="modal-body">	
+                      <div class="form-group" style="display: flex; ">
+                        <div>
+                        <label style="margin-bottom: 70px;">Hình ảnh</label>
+                        <input name="hinhanh" class="form-control" type="file" id="Fileimage" onchange="chooseFile(this)" accept="image/gif image/png image/jpeg">
+                        </div>
+                        <div style="max-width: 300px; max-height:250px; margin-left: 10px;">
+                            <img src="" alt="" width="300px" height="250px" id="image">
+                        </div>
+                      </div>			
+                        <div class="form-group">
+                            <label>Mã Hàng hóa</label>
+                            <input name="id" type="text" class="form-control" required disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Tên hàng hóa</label>
+                            <input name="name" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Hãng sản xuất</label>
+                            <input name="type" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Giá</label>
+                            <input name="price" class="form-control" required></input>
+                        </div>
+                        <div class="form-group">
+                            <label>Trọng lượng</label>
+                            <input name="image" class="form-control" required></input>
+                        </div>  
+                        <div class="form-group">
+                          <label>Hệ điều hành</label>
+                          <input name="image" class="form-control" required></input>
+                        </div> 
+                        <div class="form-group">
+                          <label>Webcam</label>
+                          <input name="image" class="form-control" required></input>
+                        </div> 
+                        <div class="form-group">
+                          <label>RAM</label>
+                          <input name="image" class="form-control" required></input>
+                        </div> 
+                        <div class="form-group">
+                          <label>CPU</label>
+                          <input name="image" class="form-control" required></input>
+                        </div> 
+                        <div class="form-group">
+                          <label>GPU</label>
+                          <input name="image" class="form-control" required></input>
+                        </div>   
+                        <div class="form-group">
+                          <label>Card</label>
+                          <input name="image" class="form-control" required></input>
+                        </div>
+                        <div class="form-group">
+                          <label>SSD</label>
+                          <input name="image" class="form-control" required></input>
+                        </div>   
+                        <div class="form-group">
+                          <label>HDD</label>
+                          <input name="image" class="form-control" required></input>
+                        </div> 
+                        <div class="form-group">
+                          <label>Màn hình</label>
+                          <input name="image" class="form-control" required></input>
+                        </div> 
+                        <div class="form-group">
+                          <label>Main</label>
+                          <input name="image" class="form-control" required></input>
+                        </div>       
+                        <div class="form-group">
+                          <label>Số lượng còn</label>
+                          <input name="image" class="form-control" required></input>
+                        </div>      
+                    </div>
+                    <div class="modal-footer">
+                
+                        <input type="submit" class="btn btn-success" value="Lưu">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+      </section>
+    </main>
+  </body>
+</html>
