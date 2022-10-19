@@ -13,8 +13,8 @@
         <h1>Laptop</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../index.html">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a href="Laptop.html">Laptop</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/thong-ke}">Trang chủ</a></li>
+            <li class="breadcrumb-item">Hàng hoá</li>
             <li class="breadcrumb-item active">Laptop</li>
           </ol>
         </nav>
@@ -25,7 +25,7 @@
         <div
           style="margin-bottom: 20px; display: flex; justify-content: flex-end"
         >
-          <a href="#addModal" class="btn btn-success">
+          <a class="btn btn-success" th:href="@{#addModal}">
             <span>Thêm Sản Phẩm</span></a
           >
         </div>
@@ -58,7 +58,7 @@
                     ></a>
                     <a href="#" class="Xoa"><i class="bi bi-trash"></i></a>
                   </div>
-                  <a href="../ChiTietHangHoa/CTLap.html" class="chitiet"><i class="=">Chi tiết</i></a>
+                  <a th:href="@{/hang-hoa/laptop-ct}" class="chitiet"><i class="=">Chi tiết</i></a>
                 </div>
               </div>
             </div>
@@ -72,7 +72,7 @@
           padding: 15px 20px;
           text-align: center;" ><i>Xem thêm>>></i></a>
         </div>   
-        <div id="addModal" class="modal">
+        <div id="addModal" class="modal" role="dialog">
           <a href="#" class="fade" style="position: fixed;"></a>
           <div class="modal-dialog1" style="width: 680px; margin-left: auto; margin-right: auto;" >
             
@@ -150,7 +150,7 @@
               </div>
           </div>
       </div>
-      <div id="editModal" class="modal">
+      <div id="editModal" class="modal" role="dialog">
         <a href="#" class="fade" style="position: fixed;"></a>
         <div class="modal-dialog1" style="width: 680px; margin-left: auto; margin-right: auto;" >
           

@@ -317,4 +317,10 @@
     }, 200);
   }
 
-})();
+});
+
+  $(document).ready(function(){
+  $("#addBtn").click(function(){
+    $("#addModal").modal();
+  });
+});
