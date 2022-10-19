@@ -1,25 +1,23 @@
 package com.khomaytinh.quanlykhomaytinh.Service.ServiceImp;
 
-import com.khomaytinh.quanlykhomaytinh.Model.Laptop;
-import com.khomaytinh.quanlykhomaytinh.Service.LapTopService;
-import org.springframework.stereotype.Service;
+import com.khomaytinh.quanlykhomaytinh.Model.BanPhim;
+import com.khomaytinh.quanlykhomaytinh.Service.TaiNgheService;
 
 import java.util.List;
 
-@Service
-public class LapTopServiceImp implements LapTopService {
+public class TaiNgheServiceImp implements TaiNgheService {
     @Override
-    public int insert(Laptop a) {
+    public int insert(BanPhim hh) {
         return 0;
     }
 
     @Override
-    public int update(Laptop hh) {
+    public int update(BanPhim hh) {
         return 0;
     }
 
     @Override
-    public List<Laptop> showList() {
+    public List<BanPhim> showList() {
         return null;
     }
 
