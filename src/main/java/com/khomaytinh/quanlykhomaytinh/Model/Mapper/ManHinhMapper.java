@@ -10,8 +10,8 @@ public class ManHinhMapper implements RowMapper<ManHinh> {
     @Override
     public ManHinh mapRow(ResultSet rs, int rowNum) throws SQLException {
         ManHinh hh = new ManHinh();
-        hh.setID(rs.getInt("MAHH"));
-        hh.setTen(rs.getString("TenHH"));
+        hh.setID(rs.getString("MAHH"));
+        hh.setTen(rs.getString("Ten"));
         hh.setHangSX(rs.getString("HangSX"));
         hh.setGia(rs.getDouble("Gia"));
         hh.setHinhAnh(rs.getBlob("HinhAnh"));

@@ -22,7 +22,7 @@ public class PCServiceImp implements PcService {
     }
 
     @Override
-    public int showDetail(int id) {
+    public int showDetail(String id) {
         return 0;
     }
 

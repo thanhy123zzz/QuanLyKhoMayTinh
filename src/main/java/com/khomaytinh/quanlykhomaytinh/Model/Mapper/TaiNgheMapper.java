@@ -11,8 +11,8 @@ public class TaiNgheMapper implements RowMapper<TaiNghe> {
     @Override
     public TaiNghe mapRow(ResultSet rs, int rowNum) throws SQLException {
         TaiNghe hh = new TaiNghe();
-        hh.setID(rs.getInt("MAHH"));
-        hh.setTen(rs.getString("TenHH"));
+        hh.setID(rs.getString("MAHH"));
+        hh.setTen(rs.getString("Ten"));
         hh.setHangSX(rs.getString("HangSX"));
         hh.setGia(rs.getDouble("Gia"));
         hh.setHinhAnh(rs.getBlob("HinhAnh"));

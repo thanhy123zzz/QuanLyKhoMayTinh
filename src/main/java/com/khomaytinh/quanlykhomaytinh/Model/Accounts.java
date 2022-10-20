@@ -35,4 +35,9 @@ private Role role;
     public Accounts() {
 
     }
+    public Accounts(String userName, String passWord, Role role) {
+        this.userName = userName;
+        this.passWord = passWord;
+        this.role = role;
+    }
 }

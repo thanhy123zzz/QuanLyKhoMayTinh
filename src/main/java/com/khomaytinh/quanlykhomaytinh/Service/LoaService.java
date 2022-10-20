@@ -11,7 +11,7 @@ public interface LoaService {
 
     List<BanPhim> showList();
 
-    int showDetail(int id);
+    int showDetail(String id);
 
     int delete(int id);
 }

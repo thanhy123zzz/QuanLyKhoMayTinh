@@ -1,11 +1,11 @@
-package com.khomaytinh.quanlykhomaytinh.Service;
+package com.khomaytinh.quanlykhomaytinh.Dao;
 
 import com.khomaytinh.quanlykhomaytinh.Model.Laptop;
 
 import java.io.IOException;
 import java.util.List;
 
-public interface LapTopService {
+public interface LaptopDao {
     int insert(Laptop hh) throws IOException;
 
     int update(Laptop hh) throws IOException;
@@ -15,4 +15,5 @@ public interface LapTopService {
     Laptop showDetail(String id);
 
     int delete(int id);
+
 }

@@ -1,21 +1,32 @@
 package com.khomaytinh.quanlykhomaytinh.Model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.sql.Blob;
 
 public class HangHoa {
-    private int ID;
+    private String ID;
     private String ten;
     private String hangSX;
     private Double gia;
     private Double trongLuong;
     private Blob hinhAnh;
     private int soLuongCon;
+    private MultipartFile hinhAnhbit;
 
-    public int getID() {
+    public MultipartFile getHinhAnhbit() {
+        return hinhAnhbit;
+    }
+
+    public void setHinhAnhbit(MultipartFile hinhAnhbit) {
+        this.hinhAnhbit = hinhAnhbit;
+    }
+
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
@@ -67,7 +78,7 @@ public class HangHoa {
         this.soLuongCon = soLuongCon;
     }
 
-    public HangHoa(int ID) {
+    public HangHoa(String ID) {
         this.ID = ID;
     }
     public HangHoa() {

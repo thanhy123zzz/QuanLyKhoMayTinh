@@ -3,6 +3,7 @@
       layout:decorate="~{layout.html}">
   <head>
     <title>Hàng hóa / Bàn phím</title>
+      <link href="/assets/css/Modal.css" rel="stylesheet" />
   </head>
 
   <body layout:fragment="content">
@@ -23,7 +24,8 @@
         <div
           style="margin-bottom: 20px; display: flex; justify-content: flex-end"
         >
-          <a href="#addModal" class="btn btn-success">
+          <a  class="btn btn-success" href="#addModal">
+
             <span>Thêm Sản Phẩm</span></a
           >
         </div>
@@ -51,7 +53,8 @@
                   style="display: flex; justify-content: space-between"
                 >
                   <div>
-                    <a href="#editModal" class="chinhsua"
+                    <a  class="chinhsua" href="#editModal"
+
                       ><i class="bi bi-pencil-square"></i
                     ></a>
                     <a href="#" class="Xoa"><i class="bi bi-trash"></i></a>
@@ -218,6 +221,5 @@
     </div>
       </section>
     </main>
-
   </body>
 </html>

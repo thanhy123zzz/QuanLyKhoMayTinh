@@ -35,6 +35,7 @@
 
   <!-- Template Main CSS File -->
   <link href="/assets/css/style.css" rel="stylesheet" />
+
 </head>
 <body>
 
@@ -64,6 +65,123 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Template Main JS File -->
 <script src="/assets/js/main.js">
+</script>
+<script>
+  function chooseFile1(fileinput) {
+    $('#divImage').css('display','none');
+    $('#divImage1').css('display','block');
+    if (fileinput.files && fileinput.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $("#image1").attr("src", e.target.result);
+      };
+      reader.readAsDataURL(fileinput.files[0]);
+    }
+  }
+</script>
+<script>
+  function chooseFile(fileinput) {
+    if (fileinput.files && fileinput.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $("#image").attr("src", e.target.result);
+      };
+      reader.readAsDataURL(fileinput.files[0]);
+    }
+  }
+</script>
+
+<script>
+  $('#newPassword, #renewPassword').on('keyup', function () {
+    if ($('#newPassword').val() == $('#renewPassword').val()) {
+      document.getElementById("updateBtn").disabled = false;
+      $('#renewPassword').css('border', '1px solid #ced4da')
+    } else {
+      document.getElementById("updateBtn").disabled = true;
+      $('#renewPassword').css('border', '2px solid red')
+    }
+  });
+
+  function update_passWord(){
+    $.ajax({
+      type : "POST",
+      url: "/update-password",
+      data: "passWord="+$('#currentPassword').val()+"&userName="+$('#SSuserName').text()+"&newPassWord="+$('#newPassword').val(),
+      success: function(data) {
+        $('.trangThai').replaceWith(data);
+        $('#newPassword').val("");
+        $('#renewPassword').val("");
+        $('#currentPassword').val("");
+      },
+      error: function(data){
+        alert("lỗi!");
+      }
+    });
+  }
+function show_laptop_on_modal(id){
+  $.ajax({
+    type : "POST",
+    url: "/hang-hoa/show-laptop-on-modal",
+    data: "maHH="+id,
+    success: function(data) {
+      $('#modalSua').replaceWith(data);
+    },
+    error: function(data){
+      alert("lỗi!");
+    }
+  });
+}
+function xapSep(){
+  $.ajax({
+    type : "POST",
+    url: "/hang-hoa/laptop",
+    data: "xs="+$('#xapSep').val(),
+    success: function(data) {
+      $('#listLaptop').replaceWith(data);
+    },
+    error: function(data){
+      alert("lỗi!");
+    }
+  });
+}
+function show_more_laptop(limit){
+  let xs = $('#xapSep').val();
+  if(xs==null){
+      xs = 1;
+    }
+  $.ajax({
+    type : "POST",
+    url: "/hang-hoa/show_more_laptop",
+    data: "xs="+xs+"&limit="+limit,
+    success: function(data) {
+      $('#listLaptop').replaceWith(data);
+    },
+    error: function(data){
+      alert("lỗi!");
+    }
+  });
+}
+  $('#LaptopID').on('blur', function (){
+
+    if($('#LaptopID').val()!=="") {
+      $.ajax({
+        type: "POST",
+        url: "/hang-hoa/check_id_laptop",
+        data: "idLaptop=" + $('#LaptopID').val(),
+        success: function (data) {
+          $('.message').replaceWith(data);
+        },
+        error: function (data) {
+          alert('Lỗi!');
+        }
+      });
+    }
+    else{
+      $('.message').replaceWith('<div id="maHH1" class="message" style="display: none">\n' +
+              '</div>')
+    }
+  });
 </script>
 </body>
 </html>

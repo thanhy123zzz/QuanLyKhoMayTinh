@@ -1,15 +1,21 @@
 package com.khomaytinh.quanlykhomaytinh.Service.ServiceImp;
 
+import com.khomaytinh.quanlykhomaytinh.Dao.PersonDao;
 import com.khomaytinh.quanlykhomaytinh.Model.Admin;
 import com.khomaytinh.quanlykhomaytinh.Model.ThuKho;
 import com.khomaytinh.quanlykhomaytinh.Service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PersonServiceImp implements PersonService {
+    @Autowired
+    PersonDao personDao;
     @Override
-    public Admin showAdmin() {
-        return null;
+    public Admin showAdmin(String userName) {
+        return personDao.showAdmin(userName);
     }
 
     @Override
@@ -19,7 +25,7 @@ public class PersonServiceImp implements PersonService {
 
     @Override
     public int updateAdmin(Admin admin) {
-        return 0;
+        return personDao.updateAdmin(admin);
     }
 
     @Override
@@ -29,7 +35,7 @@ public class PersonServiceImp implements PersonService {
 
     @Override
     public int updateThuKho(ThuKho thuKho) {
-        return 0;
+        return personDao.updateThuKho(thuKho);
     }
 
     @Override
@@ -38,8 +44,8 @@ public class PersonServiceImp implements PersonService {
     }
 
     @Override
-    public ThuKho showThuKho(String idThuKho) {
-        return null;
+    public ThuKho showThuKho(String userName) {
+        return personDao.showThuKho(userName);
     }
 
     @Override

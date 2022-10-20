@@ -30,9 +30,9 @@
               <div class="card-body pt-4 d-flex flex-column align-items-center">
                 <img
                   style="width: 300px; height: 250px"
-                  src="assets/img/product-5.jpg"
+                  th:src="@{${'/hang-hoa/anh-laptop/'+laptop.getID()}}"
                 />
-                <h2>Tai nghe hyperX</h2>
+                <h2 th:text="${laptop.getTen()}"></h2>
               </div>
             </div>
           </div>
@@ -61,47 +61,47 @@
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Giá</div>
-                      <div class="col-lg-9 col-md-8">2000000Đ</div>
+                      <div class="col-lg-9 col-md-8" th:text="${laptop.getGia()}+'VNĐ'"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Hãng sản xuất</div>
-                      <div class="col-lg-9 col-md-8">hyper</div>
+                      <div class="col-lg-9 col-md-8" th:text="${laptop.getHangSX()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">RAM</div>
-                      <div class="col-lg-9 col-md-8">8gb ĐR4</div>
+                      <div class="col-lg-9 col-md-8" th:text="${laptop.getRam()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">CPU</div>
-                      <div class="col-lg-9 col-md-8">066257882258</div>
+                      <div class="col-lg-9 col-md-8" th:text="${laptop.getCPU()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">GPU</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${laptop.getGPU()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Card</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${laptop.getCard()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Hệ điều hành</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${laptop.getHeDieuHanh()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Webcam</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${laptop.getWebCam()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Pin</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${laptop.getPin()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Trọng lượng</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${laptop.getTrongLuong()}"></div>
                     </div>
                   </div>
 

@@ -12,7 +12,7 @@ public interface ChuotService {
 
     List<Chuot> showList();
 
-    int showDetail(int id);
+    int showDetail(String id);
 
     int delete(int id);
 }
