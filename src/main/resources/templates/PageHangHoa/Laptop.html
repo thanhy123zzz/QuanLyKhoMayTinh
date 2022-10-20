@@ -73,11 +73,11 @@
      
         </div>
         <div >
-          <a href="" th:data-limit="${laptops.size()}" style="
+           <a th:data-limit="${laptops.size()}" style="
           display: block;
           margin: 5px auto 15px;
           padding: 15px 20px;
-          text-align: center;" onclick="show_more_laptop(this.getAttribute('data-limit'))"><i>Xem thêm</i></a>
+          text-align: center; cursor: pointer" onclick="show_more_laptop(this.getAttribute('data-limit'))"><i>Xem thêm</i></a>
         </div>   
         <div id="addModal" class="modal" role="dialog">
           <a href="#" class="fade" style="position: fixed;"></a>
