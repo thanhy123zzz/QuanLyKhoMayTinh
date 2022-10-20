@@ -1,9 +1,17 @@
 package com.khomaytinh.quanlykhomaytinh.Controller;
 
+import com.khomaytinh.quanlykhomaytinh.Model.Laptop;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 
 @RequestMapping("/hang-hoa")
 @Controller
@@ -12,11 +20,63 @@ public class HangHoaController extends Common{
     @GetMapping("/laptop")
     public ModelAndView page_laptop(){
         mv.setViewName("PageHangHoa/Laptop");
+        mv.addObject("laptop",new Laptop());
+        mv.addObject("laptops",lapTopService.showList(6, 1));
         return mv;
     }
-    @GetMapping("/laptop-ct")
-    public ModelAndView page_laptop_ct(){
+    @PostMapping("/laptop")
+    public ModelAndView load_page_laptop(@RequestParam("xs") int xs){
+        mv.setViewName("PageHangHoa/Laptop :: #listLaptop");
+        mv.addObject("laptops",lapTopService.showList(6, xs));
+        return mv;
+    }
+    @PostMapping("/show_more_laptop")
+    public ModelAndView show_more_laptop(@RequestParam("xs") int xs,@RequestParam("limit") int limit){
+        mv.setViewName("PageHangHoa/Laptop :: #listLaptop");
+        mv.addObject("laptops",lapTopService.showList(limit+6, xs));
+        return mv;
+    }
+    @GetMapping("/laptop-ct/{maHH}")
+    public ModelAndView page_laptop_ct(@PathVariable("maHH") String maHH){
+        mv.addObject("laptop",lapTopService.showDetail(maHH));
         mv.setViewName("ChiTietHangHoa/CTLap");
+        return mv;
+    }
+    @GetMapping("/anh-laptop/{MaHH}")
+    public void load_anh_laptop(@PathVariable("MaHH") String maHH, HttpServletResponse response) throws SQLException, IOException {
+        response.setContentType("image/jpeg");
+
+        Blob ph = lapTopService.showDetail(maHH).getHinhAnh();
+
+        byte[] bytes = ph.getBytes(1, (int) ph.length());
+        InputStream inputStream = new ByteArrayInputStream(bytes);
+        IOUtils.copy(inputStream, response.getOutputStream());
+    }
+    @PostMapping("/them-laptop")
+    public ModelAndView them_laptop(Laptop laptop) throws IOException {
+        lapTopService.insert(laptop);
+        mv.setViewName("redirect:/hang-hoa/laptop");
+        return mv;
+    }
+    @PostMapping("/sua-laptop")
+    public ModelAndView sua_laptop(Laptop laptop) throws IOException {
+        lapTopService.update(laptop);
+        mv.setViewName("redirect:/hang-hoa/laptop");
+        return mv;
+    }
+    @PostMapping("/show-laptop-on-modal")
+    public ModelAndView show_laptop_on_modal(@RequestParam("maHH")String maHH){
+        mv.setViewName("PageHangHoa/Laptop :: #modalSua");
+        mv.addObject("laptop",lapTopService.showDetail(maHH));
+        return mv;
+    }
+    @PostMapping("/check_id_laptop")
+    public ModelAndView check_id_laptop(@RequestParam("idLaptop")String idlap){
+        if(hangHoaService.showDetail(idlap)==null){
+            mv.setViewName("Fragments/1Vai :: #maHH1");
+        }else{
+            mv.setViewName("Fragments/1Vai :: #maHH");
+        }
         return mv;
     }
     // end-controller cho laptop

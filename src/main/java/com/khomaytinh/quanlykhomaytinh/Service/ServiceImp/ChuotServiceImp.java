@@ -22,7 +22,7 @@ public class ChuotServiceImp implements ChuotService {
     }
 
     @Override
-    public int showDetail(int id) {
+    public int showDetail(String id) {
         return 0;
     }
 

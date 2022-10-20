@@ -10,8 +10,8 @@ public class PCMapper implements RowMapper<PC> {
     @Override
     public PC mapRow(ResultSet rs, int rowNum) throws SQLException {
         PC hh = new PC();
-        hh.setID(rs.getInt("MAHH"));
-        hh.setTen(rs.getString("TenHH"));
+        hh.setID(rs.getString("MAHH"));
+        hh.setTen(rs.getString("Ten"));
         hh.setHangSX(rs.getString("HangSX"));
         hh.setGia(rs.getDouble("Gia"));
         hh.setHinhAnh(rs.getBlob("HinhAnh"));

@@ -1,10 +1,13 @@
 package com.khomaytinh.quanlykhomaytinh.Model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Admin {
     private String ID;
     private String Ten;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngaySinh;
     private Boolean gioiTinh;
     private String soDT;

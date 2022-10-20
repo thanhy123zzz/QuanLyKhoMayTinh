@@ -11,8 +11,8 @@ public class ChuotMapper implements RowMapper<Chuot> {
     @Override
     public Chuot mapRow(ResultSet rs, int rowNum) throws SQLException {
         Chuot hh = new Chuot();
-        hh.setID(rs.getInt("MAHH"));
-        hh.setTen(rs.getString("TenHH"));
+        hh.setID(rs.getString("MAHH"));
+        hh.setTen(rs.getString("Ten"));
         hh.setHangSX(rs.getString("HangSX"));
         hh.setGia(rs.getDouble("Gia"));
         hh.setHinhAnh(rs.getBlob("HinhAnh"));

@@ -14,7 +14,7 @@ public class ThuKhoMapper implements RowMapper<ThuKho> {
         ad.setID(rs.getString("MaTK"));
         ad.setGioiTinh(rs.getBoolean("GioiTinh"));
         ad.setTen(rs.getString("TenTK"));
-        ad.setCCCD(rs.getString("SDT"));
+        ad.setSoDT(rs.getString("SDT"));
         ad.setNgaySinh(rs.getDate("NgaySinh"));
         ad.setCCCD(rs.getString("CCCD"));
         ad.setTaiKhoan(new Accounts(rs.getString("UserName")));

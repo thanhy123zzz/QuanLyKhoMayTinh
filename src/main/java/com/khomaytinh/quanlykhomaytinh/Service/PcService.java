@@ -12,7 +12,7 @@ public interface PcService {
 
     List<PC> showList();
 
-    int showDetail(int id);
+    int showDetail(String id);
 
     int delete(int id);
 }
