@@ -68,8 +68,13 @@ public class LaptopDaoImp implements LaptopDao {
     }
 
     @Override
-    public int delete(int id) {
-        return 0;
+    public int delete(String id) {
+        String query2 = "delete from laptop where MAHH='"+id+"'";
+        String query= "delete from hanghoa where MAHH='"+id+"'";
+
+        int kq = jdbcTemplate.update(query2);
+        kq+= jdbcTemplate.update(query);
+        return kq;
     }
 }
 

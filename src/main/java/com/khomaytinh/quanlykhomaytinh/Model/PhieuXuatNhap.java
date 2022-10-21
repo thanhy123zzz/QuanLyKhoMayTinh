@@ -1,11 +1,14 @@
 package com.khomaytinh.quanlykhomaytinh.Model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.List;
 
 public class PhieuXuatNhap {
-    private int maPhieu;
+    private String maPhieu;
     private String loai;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngayXP;
     private int SoLoaiSP;
     private Double tongTienCaPhieu;
@@ -13,11 +16,11 @@ public class PhieuXuatNhap {
     private Accounts accounts;
     private List<ChiTietPhieu> chiTietPhieus;
 
-    public int getMaPhieu() {
+    public String getMaPhieu() {
         return maPhieu;
     }
 
-    public void setMaPhieu(int maPhieu) {
+    public void setMaPhieu(String maPhieu) {
         this.maPhieu = maPhieu;
     }
 

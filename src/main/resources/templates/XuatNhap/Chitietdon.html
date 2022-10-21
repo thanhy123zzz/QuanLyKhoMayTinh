@@ -28,7 +28,7 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Chi tiết đơn hàng</h5>
-                <input type="text" value="5" disabled />
+                <input type="text" th:value="${session.phieu.getSoLoaiSP()}" disabled />
                 <!-- General Form Elements -->
                 <table
                   class="table table-striped table-hover"
@@ -45,7 +45,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr th:each="i:${#numbers.sequence(1,session.phieu.getSoLoaiSP())}">
                       <td style="vertical-align: middle">
                         <div class="col-sm-10">
                           <select

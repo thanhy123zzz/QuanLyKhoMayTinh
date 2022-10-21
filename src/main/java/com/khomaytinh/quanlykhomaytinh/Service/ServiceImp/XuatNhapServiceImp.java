@@ -32,7 +32,7 @@ public class XuatNhapServiceImp implements XuatNhapServiec {
     }
 
     @Override
-    public PhieuXuatNhap showDetailPhieu(int id) {
+    public PhieuXuatNhap showDetailPhieu(String id) {
         return null;
     }
 }

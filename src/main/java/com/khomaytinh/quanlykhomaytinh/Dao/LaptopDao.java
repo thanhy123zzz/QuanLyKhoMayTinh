@@ -14,6 +14,6 @@ public interface LaptopDao {
 
     Laptop showDetail(String id);
 
-    int delete(int id);
+    int delete(String id);
 
 }
