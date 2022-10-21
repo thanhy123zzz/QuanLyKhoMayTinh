@@ -22,87 +22,60 @@
       <section class="section">
         <div class="row">
           <div class="col-lg-6" style="width: 100%">
-            <div class="card">
+            <form th:action="@{/xuat-nhap/chi-tiet-phieu}" method="post" class="card">
               <div class="card-body">
                 <h5 class="card-title">Tạo đơn xuất, nhập kho</h5>
 
                 <!-- General Form Elements -->
-
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">Mã Phiếu</label>
+                  <div class="col-sm-10">
+                    <input name="maPhieu" type="text" class="form-control" />
+                  </div>
+                </div>
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Loại đơn</label>
                   <div class="col-sm-10">
-                    <select
+                    <select name="loai"
                       class="form-select"
-                      aria-label="Default select example"
-                    >
-                      <option selected>Chọn loại đơn</option>
+                      aria-label="Default select example">
+                      <option disabled selected>Chọn loại đơn</option>
                       <option value="1">Đơn nhập kho</option>
                       <option value="2">Đơn xuất kho</option>
                     </select>
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="inputDate" class="col-sm-2 col-form-label"
-                    >Ngày nhập hàng</label
-                  >
+                  <label for="inputDate" class="col-sm-2 col-form-label">Ngày nhập hàng</label>
                   <div class="col-sm-10">
-                    <input type="date" class="form-control" />
+                    <input readonly id="ngayTao" name="ngayXP" type="date" max="3000-01-01" onfocus="this.max=new Date().toISOString().split('T')[0]" class="form-control" />
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="inputPassword" class="col-sm-2 col-form-label"
-                    >Người lập đơn</label
-                  >
+                  <label for="inputPassword" class="col-sm-2 col-form-label">Người lập đơn</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" />
+                    <input readonly th:value="${session.admin.getTen()}" type="text" class="form-control" />
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label"
-                    >Số loại hàng hóa</label
-                  >
+                    >Số loại hàng hóa</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" />
+                    <input name="SoLoaiSP" type="text" class="form-control" />
                   </div>
                 </div>
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label"
-                    >Tổng tiền</label
-                  >
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" />
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Trạng thái</label>
-                  <div class="col-sm-10">
-                    <select
-                      class="form-select"
-                      aria-label="Default select example"
-                    >
-                      <option selected>Chọn trạng thái cho đơn hàng</option>
-                      <option value="1">Hoàn thành</option>
-                      <option value="2">Thất bại</option>
-                      <option value="3">Lỗi</option>
-                    </select>
-                  </div>
-                </div>
-
                 <div class="row mb-3">
                   <div
-                    class="col-sm-10"
-                    style="display: flex; justify-content: center"
-                  >
+                    class="col-sm-12"
+                    style="display: flex; justify-content: center">
                     <button type="submit" class="btn btn-primary">
-                      <a href="Chitietdon.html">Tiếp tục</a>
+                      Tiếp tục
                     </button>
                   </div>
                 </div>
-
                 <!-- End General Form Elements -->
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </section>

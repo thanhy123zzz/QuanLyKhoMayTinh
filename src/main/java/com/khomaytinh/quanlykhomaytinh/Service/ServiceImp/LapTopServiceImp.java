@@ -34,7 +34,7 @@ public class LapTopServiceImp implements LapTopService {
     }
 
     @Override
-    public int delete(int id) {
-        return 0;
+    public int delete(String id) {
+        return laptopDao.delete(id);
     }
 }

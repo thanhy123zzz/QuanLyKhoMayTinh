@@ -182,6 +182,23 @@ function show_more_laptop(limit){
               '</div>')
     }
   });
+ function xoa_Lap(id) {
+    if (confirm('Bạn có muốn xoá laptop này?')) {
+      $.ajax({
+        type: "POST",
+        url: "/hang-hoa/xoa-lap",
+        data: "idLaptop=" + id,
+        success: function () {
+          alert('Thành công!');
+          window.location = '/hang-hoa/laptop';
+        },
+        error: function (data) {
+          alert('Lỗi!');
+        }
+      });
+    }
+  }
+  document.getElementById('ngayTao').valueAsDate = new Date();
 </script>
 </body>
 </html>

@@ -26,7 +26,7 @@
           <div
                   style="margin-bottom: 20px; display: flex; justify-content: space-between"
           >
-              <a  class="btn btn-success" href="#addModal">
+              <a class="btn btn-success" href="#addModal">
                   <span>Thêm Sản Phẩm</span></a
               >
               <div >
@@ -61,9 +61,8 @@
                 <div class="social-links" style="display: flex; justify-content: space-between">
                   <div>
                     <a  class="chinhsua" href="#editModal" th:data-parameter1 ="${laptop.getID()}" onclick="show_laptop_on_modal(this.getAttribute('data-parameter1'))"><i class="bi bi-pencil-square"></i
-
                     ></a>
-                    <a href="#" class="Xoa"><i class="bi bi-trash"></i></a>
+                    <a class="Xoa" th:data-parameter1 ="${laptop.getID()}" onclick="xoa_Lap(this.getAttribute('data-parameter1'))"><i class="bi bi-trash"></i></a>
                   </div>
                   <a th:href="@{${'/hang-hoa/laptop-ct/'+laptop.getID()}}" class="chitiet"><i class="=">Chi tiết</i></a>
                 </div>
@@ -73,11 +72,11 @@
      
         </div>
         <div >
-          <a href="" th:data-limit="${laptops.size()}" style="
+          <a th:data-limit="${laptops.size()}" style="
           display: block;
           margin: 5px auto 15px;
           padding: 15px 20px;
-          text-align: center;" onclick="show_more_laptop(this.getAttribute('data-limit'))"><i>Xem thêm</i></a>
+          text-align: center; cursor: pointer" onclick="show_more_laptop(this.getAttribute('data-limit'))"><i>Xem thêm</i></a>
         </div>   
         <div id="addModal" class="modal" role="dialog">
           <a href="#" class="fade" style="position: fixed;"></a>

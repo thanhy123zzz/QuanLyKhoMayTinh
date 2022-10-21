@@ -12,6 +12,6 @@ public interface XuatNhapServiec {
     int deletePhieu(int id);
 
     List<PhieuXuatNhap> showList();
-    PhieuXuatNhap showDetailPhieu(int id);
+    PhieuXuatNhap showDetailPhieu(String id);
 
 }

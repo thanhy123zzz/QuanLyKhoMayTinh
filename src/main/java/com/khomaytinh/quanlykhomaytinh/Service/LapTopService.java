@@ -14,5 +14,5 @@ public interface LapTopService {
 
     Laptop showDetail(String id);
 
-    int delete(int id);
+    int delete(String id);
 }

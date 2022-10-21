@@ -3,6 +3,7 @@ package com.khomaytinh.quanlykhomaytinh.Controller;
 import com.khomaytinh.quanlykhomaytinh.Model.Laptop;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -62,6 +63,12 @@ public class HangHoaController extends Common{
     public ModelAndView sua_laptop(Laptop laptop) throws IOException {
         lapTopService.update(laptop);
         mv.setViewName("redirect:/hang-hoa/laptop");
+        return mv;
+    }
+    @PostMapping("/xoa-lap")
+    public ModelAndView xoa_Lap(@RequestParam("idLaptop")String idlap){
+        lapTopService.delete(idlap);
+
         return mv;
     }
     @PostMapping("/show-laptop-on-modal")
