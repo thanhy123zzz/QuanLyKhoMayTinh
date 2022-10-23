@@ -492,6 +492,27 @@ function show_more_ban_phim(limit){
 	              '</div>')
 	    }
 	  });
+  // check mã thủ kho
+    $('#thukhoID').on('blur', function (){
+
+	    if($('#thukhoID').val()!=="") {
+	      $.ajax({
+	        type: "POST",
+	        url: "/check_id_thu_kho",
+	        data: "maTK=" + $('#thukhoID').val(),
+	        success: function (data) {
+	          $('.message').replaceWith(data);
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	    else{
+	      $('.message').replaceWith('<div id="maHH1" class="message" style="display: none">\n' +
+	              '</div>')
+	    }
+	  });
   function show_ban_phim_on_modal(id){
 	  $.ajax({
 	    type : "POST",
@@ -675,6 +696,22 @@ function show_more_ban_phim(limit){
 	        success: function () {
 	          alert('Thành công!');
 	          window.location = '/hang-hoa/tai-nghe';
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	  }
+  function xoa_thu_kho(id) {
+	    if (confirm('Bạn có muốn xoá thủ kho này?')) {
+	      $.ajax({
+	        type: "POST",
+	        url: "/xoa-thu-kho",
+	        data: "maTK=" + id,
+	        success: function () {
+	          alert('Thành công!');
+	          window.location = '/quan-ly';
 	        },
 	        error: function (data) {
 	          alert('Lỗi!');

@@ -12,15 +12,19 @@ public class ThuKhoMapper implements RowMapper<ThuKho> {
     public ThuKho mapRow(ResultSet rs, int rowNum) throws SQLException {
         ThuKho ad = new ThuKho();
         ad.setID(rs.getString("MaTK"));
-        ad.setGioiTinh(rs.getBoolean("GioiTinh"));
         ad.setTen(rs.getString("TenTK"));
-        ad.setSoDT(rs.getString("SDT"));
+        ad.setGioiTinh(rs.getBoolean("GioiTinh"));
         ad.setNgaySinh(rs.getDate("NgaySinh"));
+        ad.setSoDT(rs.getString("SDT"));
+        
         ad.setCCCD(rs.getString("CCCD"));
-        ad.setTaiKhoan(new Accounts(rs.getString("UserName")));
         ad.setNgayBatDauLam(rs.getDate("NgayBatDau"));
         ad.setLuong(rs.getDouble("Luong"));
         ad.setSoTienTrenGio(rs.getDouble("SoTienTrenGio"));
+        ad.setTaiKhoan(new Accounts(rs.getString("UserName")));
+        
+        
+        
         return ad;
     }
 }

@@ -24,24 +24,24 @@
             <div class="addemployee">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="" method="get">
+                        <form th:action="@{/sua-thu-kho}" method="post">
         
                             <div class="modal-body">					
                                 <div class="form-group">
                                     <label>Mã nhân viên</label>
-                                    <input name="id" type="text" class="form-control" required value="" disabled>
+                                    <input name="ID" type="text" class="form-control" required th:value="${thukho.getID()}" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label>Tên nhân viên</label>
-                                    <input name="name" type="text" class="form-control" required value="">
+                                    <input name="Ten" type="text" class="form-control" required th:value="${thukho.getTen()}">
                                 </div>
                                 <div class="form-group">
                                     <label>Tài khoản</label>
-                                    <input name="user" type="text" class="form-control" required value="">
+                                    <input name="user" type="text" class="form-control" required th:value="${thukho.getTaiKhoan().getUserName()}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Mật khẩu</label>
-                                    <input name="password" class="form-control" required value=""></input>
+                                    <label>Tiền lương theo giờ</label>
+                                    <input name="soTienTrenGio" class="form-control" required th:value="${thukho.getSoTienTrenGio()}"></input>
                                 </div>
                                                     
                             </div>
