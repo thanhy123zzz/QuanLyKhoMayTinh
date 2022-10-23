@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+  <head>
+
+    <title>Nhập xuất hàng / Đơn nhập hàng</title>
+  </head>
+
+  <body layout:fragment="content">
+    <main id="main" class="main">
+      <div class="pagetitle">
+        <h1>Đơn nhập hàng</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Trang chủ</a></li>
+            <li class="breadcrumb-item">Nhập xuất hàng</li>
+            <li class="breadcrumb-item active">
+              <a href="Lichsunhapkho.html">Đơn nhập hàng</a>
+            </li>
+            <li class="breadcrumb-item active">Chi tiết đơn nhập hàng</li>
+          </ol>
+        </nav>
+      </div>
+      <!-- End Page Title -->
+
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-6" style="width: 100%">
+            <div class="card">
+              <form class="card-body" th:object="${phieuXuatNhap}">
+                <h5 class="card-title">Chi tiết phiếu</h5>
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-2 col-form-label" style="padding-top: 0">Mã phiếu</label>
+                  <div class="col-sm-10">
+                    <label for="" th:text="${phieuXuatNhap.getMaPhieu()}"></label>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" style="padding-top: 0">Loại phiếu</label>
+                      <div class="col-sm-10" th:text="${phieuXuatNhap.getLoai()=='nhap'?'Nhập':'Xuất'}"></div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-2 col-form-label" style="padding-top: 0">Ngày</label>
+                  <div class="col-sm-10">
+                    <label for="" th:text="${phieuXuatNhap.getNgayXP()}"></label>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputPassword" class="col-sm-2 col-form-label" style="padding-top: 0">Người phiếu</label>
+                  <div class="col-sm-10">
+                    <label for="" th:text="${phieuXuatNhap.getAccounts().getUserName()}"></label>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label" style="padding-top: 0">Số loại hàng hóa</label>
+                  <div class="col-sm-10">
+                    <label for="" th:text="${phieuXuatNhap.soLoaiSP}"></label>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label" style="padding-top: 0">Số loại hàng hóa</label>
+                  <div class="col-sm-10">
+                    <select style="padding: 0 12px 7px 12px">
+                      <option selected value="false">Thất bại</option>
+                      <option selected th:if="${phieuXuatNhap.isTrangThai()}" value="true">Hoàn thành</option>
+                    </select>
+                  </div>
+                </div>
+                <table class="table table-striped table-hover">
+                  <thead>
+                  <tr>
+                    <th>Mã hàng hóa</th>
+                    <th>Tên hàng hóa</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                      <tr th:each="hh: ${phieuXuatNhap.getChiTietPhieus()}">
+                        <td style="vertical-align: middle" th:text="${hh.getHangHoa().getID()}">
+                        </td>
+                        <td th:text="${hh.getHangHoa().getTen()}" style="vertical-align: middle; width: 400px">
+                        </td>
+                        <td style="vertical-align: middle" th:text="${hh.getSoLuong()}">
+                        </td>
+                        <td th:text="${hh.getDonGia()}" style="vertical-align: middle">
+                        </td>
+                        <td style="vertical-align: middle" th:text="${hh.getThanhTien()}">
+                        </td>
+                        <td>
+                          <a th:href="@{${'/xuat-nhap/lich-su/'+phieuXuatNhap.getMaPhieu()+'/'+hh.getHangHoa().getID()}}">
+                            <i class="bi bi-pencil-square"></i>
+                          </a>
+                          <i class="bi bi-x-lg" style="cursor: pointer"></i>
+                        </td>
+                      </tr>
+                  </tbody>
+                  <tr>
+                    <th>Tổng</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th th:text="${phieuXuatNhap.getTongTienCaPhieu()}">
+                    </th>
+                    <th></th>
+                  </tr>
+                </table>
+
+                <div class="row mb-3">
+                  <div class="col-sm-10"
+                       style="display: flex; justify-content: center">
+                    <button id="btnXacNhan" type="submit" class="btn btn-primary">
+                      Xác nhận
+                    </button>
+                  </div>
+                </div>
+                <!-- End General Form Elements -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  </body>
+</html>

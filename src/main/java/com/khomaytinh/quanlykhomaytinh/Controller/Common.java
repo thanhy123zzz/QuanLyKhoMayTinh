@@ -16,6 +16,7 @@ import com.khomaytinh.quanlykhomaytinh.Service.TaiNgheService;
 
 import com.khomaytinh.quanlykhomaytinh.Service.LoginService;
 import com.khomaytinh.quanlykhomaytinh.Service.PersonService;
+import com.khomaytinh.quanlykhomaytinh.Service.XuatNhapServiec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,6 +41,8 @@ public class Common {
 
     @Autowired
     LapTopService lapTopService;
+    @Autowired
+    XuatNhapServiec xuatNhapServiec;
     
     @Autowired
     BanPhimService BanPhimService;
@@ -54,7 +57,6 @@ public class Common {
     PcService PcService;
     @Autowired
     TaiNgheService TaiNgheService;
-
     Admin perSon(Principal principal){
         if(Objects.equals(loginService.CheckUserName(principal.getName()).getRole().getMaRL(), "ADMIN")){
             Admin admin = personService.showAdmin(principal.getName());

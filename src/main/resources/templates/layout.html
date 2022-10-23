@@ -683,6 +683,50 @@ function show_more_ban_phim(limit){
 	    }
 	  }
   document.getElementById('ngayTao').valueAsDate = new Date();
+
+  function load_listHH(){
+    $.ajax({
+      type: "POST",
+      url: "/xuat-nhap/load_HH",
+      data: "loai=" + $('#haha').val(),
+      success: function (data) {
+        $('#loadHH').replaceWith(data);
+      },
+      error: function (data) {
+        alert('Lỗi!');
+      }
+    });
+  }
+  function themHHvaoSession(id){
+
+    $.ajax({
+      type: "POST",
+      url: "/xuat-nhap/them-hh-session",
+      data: "id=" + id,
+      success: function (data) {
+        $('#listTenHH').replaceWith(data);
+        document.getElementById()
+      },
+      error: function (data) {
+        alert('Lỗi!');
+      }
+    });
+  }
+  function check_maPhieu() {
+    if ($('#maPhieu').val() !== "") {
+      $.ajax({
+        type: "POST",
+        url: "/xuat-nhap/check-ma-phieu",
+        data: "maPhieu=" + $('#maPhieu').val(),
+        success: function (data) {
+          $('.message').replaceWith(data);
+        },
+        error: function (data) {
+          alert('Lỗi!');
+        }
+      });
+    }
+  }
 </script>
 </body>
 </html>

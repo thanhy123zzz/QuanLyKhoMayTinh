@@ -6,80 +6,117 @@
   </head>
 
   <body layout:fragment="content">
-    <main id="main" class="main">
-      <div class="pagetitle">
-        <h1>Tạo đơn xuất, nhập kho</h1>
-        <nav>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../index.html">Trang chủ</a></li>
-            <li class="breadcrumb-item">Nhập xuất hàng</li>
-            <li class="breadcrumb-item active">Tạo đơn xuất, nhập kho</li>
-          </ol>
-        </nav>
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Tạo đơn xuất, nhập kho</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+          <li class="breadcrumb-item active">Tạo đơn xuất, nhập kho</li>
+        </ol>
+      </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section">
+      <div
+              class="search-bar"
+              style="
+            display: flex;
+            margin-bottom: 10px;
+            margin-right: 320px;
+            justify-content: flex-end;
+          "
+      >
+        <form
+                class="search-form d-flex align-items-center"
+                method="POST"
+                action="#"
+        >
+          <input
+                  type="text"
+                  name="query"
+                  placeholder="Tìm kiếm"
+                  title="Enter search keyword"
+                  style="
+                border: 0;
+                font-size: 14px;
+                color: #012970;
+                border: 1px solid rgba(1, 41, 112, 0.2);
+                padding: 7px 38px 7px 8px;
+                border-radius: 3px;
+                transition: 0.3s;
+              "
+          />
+          <button
+                  type="submit"
+                  title="Search"
+                  style="
+                border: 0;
+                padding: 0;
+                margin-left: -30px;
+                background: none;
+              "
+          >
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
       </div>
-      <!-- End Page Title -->
-
-      <section class="section">
-        <div class="row">
-          <div class="col-lg-6" style="width: 100%">
-            <form th:action="@{/xuat-nhap/chi-tiet-phieu}" method="post" class="card">
-              <div class="card-body">
-                <h5 class="card-title">Tạo đơn xuất, nhập kho</h5>
-
-                <!-- General Form Elements -->
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">Mã Phiếu</label>
-                  <div class="col-sm-10">
-                    <input name="maPhieu" type="text" class="form-control" />
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Loại đơn</label>
-                  <div class="col-sm-10">
-                    <select name="loai"
-                      class="form-select"
-                      aria-label="Default select example">
-                      <option disabled selected>Chọn loại đơn</option>
-                      <option value="1">Đơn nhập kho</option>
-                      <option value="2">Đơn xuất kho</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputDate" class="col-sm-2 col-form-label">Ngày nhập hàng</label>
-                  <div class="col-sm-10">
-                    <input readonly id="ngayTao" name="ngayXP" type="date" max="3000-01-01" onfocus="this.max=new Date().toISOString().split('T')[0]" class="form-control" />
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Người lập đơn</label>
-                  <div class="col-sm-10">
-                    <input readonly th:value="${session.admin.getTen()}" type="text" class="form-control" />
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label"
-                    >Số loại hàng hóa</label>
-                  <div class="col-sm-10">
-                    <input name="SoLoaiSP" type="text" class="form-control" />
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <div
-                    class="col-sm-12"
-                    style="display: flex; justify-content: center">
-                    <button type="submit" class="btn btn-primary">
-                      Tiếp tục
-                    </button>
-                  </div>
-                </div>
-                <!-- End General Form Elements -->
+      <div id="loadHH" class="product" style="display: flex; flex-wrap: wrap; margin-right: 300px">
+        <ul th:each="hh : ${hhs}">
+          <div class="card">
+            <div class="profile-card pt-4 d-flex flex-column"
+                 style="padding: 0 10px 10px 10px">
+              <img th:src="@{${'/xuat-nhap/anh/'+hh.getID()}}" style="width: 300px; height: 250px"/>
+              <p id="idLaptop" style="display: none" th:text="${hh.getID()}"></p>
+              <h5 style="margin-top: 10px; width: 300px; height: 45px;" th:text="${hh.getTen()}"></h5>
+              <h6 th:text="'Giá: '+${hh.getGia()}"></h6>
+              <div style="display: flex; justify-content: space-between">
+                <h6 th:if="${hh.getSoLuongCon()!=0}" th:text="'Còn: '+${hh.getSoLuongCon()}"></h6>
+                <label th:unless="${hh.getSoLuongCon()!=0}" for="" style="display: block; color: red"> hết hàng</label>
               </div>
-            </form>
+              <button th:data-id="${hh.getID()}" onclick="themHHvaoSession(this.getAttribute('data-id'));this.disabled=true;" class="btn btn-success">Thêm</button>
+            </div>
           </div>
+        </ul>
+      </div>
+    </section>
+    <div
+            style="
+          position: fixed;
+          top: 60px;
+          right: 0;
+          bottom: 0;
+          width: 300px;
+          z-index: 996;
+          transition: all 0.3s;
+          padding: 20px;
+          overflow-y: auto;
+          scrollbar-width: thin;
+          scrollbar-color: #aab7cf transparent;
+          box-shadow: 0px 0px 20px rgb(1 41 112 / 10%);
+          background-color: #fff;
+        "
+    >
+      <div>
+        <div class="dropdown">
+          <select id="haha" onchange="load_listHH()" class="form-select" aria-label="Default select example">
+            <option selected disabled>Loại đơn</option>
+            <option value="nhap">Đơn nhập kho</option>
+            <option value="xuat">Đơn xuất kho</option>
+          </select>
         </div>
-      </section>
-    </main>
+      </div>
+      <div id="listTenHH">
+      <div th:each="hh : ${session.listHHcuaPhieu}" style="display: flex; flex-direction: column;border-bottom: 1px solid;">
+        <label style="margin-top: 6px" for="" th:text="${hh.getTen()}" th:value="${hh.getID()}">laptop gaming</label>
+      </div>
+      </div>
+      <div style="bottom: 0; display: flex; justify-content: center;margin-top: 6px">
+        <a href="/xuat-nhap/xac-nhan-chi-tiet" class="btn btn-success"> <span>Tiếp tục</span></a>
+      </div>
+    </div>
+  </main>
     <!-- End #main -->
   </body>
 </html>
