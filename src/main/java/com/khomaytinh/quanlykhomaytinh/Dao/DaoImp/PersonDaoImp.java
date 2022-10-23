@@ -3,8 +3,11 @@ package com.khomaytinh.quanlykhomaytinh.Dao.DaoImp;
 import com.khomaytinh.quanlykhomaytinh.Dao.PersonDao;
 import com.khomaytinh.quanlykhomaytinh.Model.Accounts;
 import com.khomaytinh.quanlykhomaytinh.Model.Admin;
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 import com.khomaytinh.quanlykhomaytinh.Model.Mapper.AccountMapper;
 import com.khomaytinh.quanlykhomaytinh.Model.Mapper.AdminMapper;
+import com.khomaytinh.quanlykhomaytinh.Model.Mapper.HangHoaMapper;
+import com.khomaytinh.quanlykhomaytinh.Model.Mapper.LapTopMapper;
 import com.khomaytinh.quanlykhomaytinh.Model.Mapper.ThuKhoMapper;
 import com.khomaytinh.quanlykhomaytinh.Model.ThuKho;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +39,15 @@ public class PersonDaoImp implements PersonDao {
     }
 
     @Override
-    public int insertThuKho(ThuKho thuKho) {
-        return 0;
+    public int insertThuKho(ThuKho tk) {
+    	String querytk = "INSERT INTO `quanlykhomaytinh`.`account` " +
+                "(`username`, `password`, `marl`) VALUES (?,?,?);";
+        int kq1= jdbcTemplate.update(querytk,new Object[]{tk.getTaiKhoan().getUserName(),tk.getTaiKhoan().getPassword(),tk.getTaiKhoan().getRole().getMaRL()});
+
+        String querytk1 = "insert into thukho(`matk`,`username`) values(?,?)";
+        int kq2 = jdbcTemplate.update(querytk1,new Object[]{tk.getID(),tk.getTaiKhoan().getUserName()});
+        return kq1+kq2;
+        
     }
 
     @Override
@@ -46,10 +56,26 @@ public class PersonDaoImp implements PersonDao {
         return jdbcTemplate.update(query,new Object[]{admin.getTen(), admin.getNgaySinh(),admin.getGioiTinh(),admin.getCCCD(),admin.getSoDT(),admin.getTaiKhoan().getUserName()});
 
     }
+    public int updateThuKho1(ThuKho admin) {
+        String query = "update thukho set sotientrengio=? where matk = ?";
+        return jdbcTemplate.update(query,new Object[]{ admin.getSoTienTrenGio(),admin.getID()});
+
+    }
 
     @Override
     public int deleteThuKho(String idNV) {
-        return 0;
+         String query= "delete from thukho where matk='"+idNV+"'";
+
+         int kq = jdbcTemplate.update(query);
+         return kq;
+    }
+    public int delete(String id) {
+        String query2 = "delete from thukho where matk='"+id+"'";
+        
+
+        int kq = jdbcTemplate.update(query2);
+        
+        return kq;
     }
 
     @Override
@@ -58,9 +84,22 @@ public class PersonDaoImp implements PersonDao {
         List<ThuKho> listAdmin = jdbcTemplate.query(query,new ThuKhoMapper());
         return listAdmin.get(0);
     }
+    public ThuKho showThuKho1(String id) {
+        String query = "select*from thukho where matk='"+id+"'";
+        List<ThuKho> listAdmin = jdbcTemplate.query(query,new ThuKhoMapper());
+        return listAdmin.get(0);
+    }
 
     @Override
     public List<ThuKho> showListThuKho() {
-        return null;
+    	String query="select * from thukho";
+    	 return jdbcTemplate.query(query,new ThuKhoMapper());
+    }
+    @Override
+    public ThuKho check_id(String id) {
+        String query = "select*from thukho where matk = '"+id+"'";
+        if(jdbcTemplate.query(query,new ThuKhoMapper()).size()==0)
+            return null;
+        else return jdbcTemplate.query(query,new ThuKhoMapper()).get(0);
     }
 }
