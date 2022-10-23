@@ -26,6 +26,7 @@ public class XuatNhapController extends Common{
         List<HangHoa> list = new ArrayList<>();
         mv.addObject("hhs",list);
         mv.setViewName("XuatNhap/TaoDonXN");
+        mv.addObject("hhs",xuatNhapServiec.load_List_HH("nhap"));
         session.setAttribute("listHHcuaPhieu",list);
         return mv;
     }

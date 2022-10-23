@@ -64,17 +64,19 @@ public class PersonDaoImp implements PersonDao {
 
     @Override
     public int deleteThuKho(String idNV) {
-         String query= "delete from thukho where matk='"+idNV+"'";
+        String userName = showThuKho1(idNV).getTaiKhoan().getUserName();
+        String query2 = "delete from thukho where matk='"+idNV+"'";
+        int kq = jdbcTemplate.update(query2);
 
-         int kq = jdbcTemplate.update(query);
-         return kq;
+        String query = "delete from account where UserName ='"+userName+"'";
+        jdbcTemplate.update(query);
+        return kq;
     }
     public int delete(String id) {
+        String query = "delete from account where UserName ='"+showThuKho1(id).getTaiKhoan().getUserName()+"'";
+        jdbcTemplate.update(query);
         String query2 = "delete from thukho where matk='"+id+"'";
-        
-
         int kq = jdbcTemplate.update(query2);
-        
         return kq;
     }
 
