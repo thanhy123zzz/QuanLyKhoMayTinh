@@ -727,6 +727,86 @@ function show_more_ban_phim(limit){
       });
     }
   }
+
+  function thanhTien(id) {
+    document.getElementById('btnXacNhan').style.display = 'block';
+
+    var a = document.getElementById(id).value;
+    var b = document.getElementById('gia' + id).textContent;
+    document.getElementById('tong' + id).value = a * b;
+    var tong = 0;
+    var sl = document.getElementById('SoLoai').value;
+    for (var i = 0; i < sl; i++) {
+      tong = tong + parseFloat(document.getElementById('tong' + i).value);
+    }
+    document.getElementById('tongPhieu').value = tong;
+  }
+  function xoaRow(id){
+    document.getElementById('btnXacNhan').style.display = 'block';
+    var tong = 0;
+    document.getElementById('SoLoai').value -= 1;
+
+    for (var i = 0; i < document.getElementById('SoLoai').value; i++) {
+      tong = tong + parseFloat(document.getElementById('tong' + i).value);
+    }
+    document.getElementById('tongPhieu').value = tong;
+    $.ajax({
+      type: "POST",
+      url: "/xuat-nhap/change-chitiet",
+      data: "index=" + id,
+      success: function (data) {
+        $('#bodyTable').replaceWith(data);
+      },
+      error: function (data) {
+        alert('Lỗi!');
+      }
+    });
+  }
+  function alertFn(id) {
+    if (confirm('Bạn có muốn xoá phiếu này?')) {
+      $.ajax({
+        type: "POST",
+        url: "/xuat-nhap/xoa-phieu-nhap",
+        data: "idPhieu=" + id,
+        success: function (data) {
+          alert('Thành công!');
+          $('#listPhieuNhap').replaceWith(data);
+        },
+        error: function (data) {
+          alert('Lỗi!');
+        }
+      });
+    }
+  }
+  function alertFn2(id) {
+    if (confirm('Bạn có muốn xoá phiếu này?')) {
+      $.ajax({
+        type: "POST",
+        url: "/xuat-nhap/xoa-phieu-xuat",
+        data: "idPhieu=" + id,
+        success: function (data) {
+          alert('Thành công!');
+          $('#listPhieuNhap').replaceWith(data);
+        },
+        error: function (data) {
+          alert('Lỗi!');
+        }
+      });
+    }
+  }
+  function TimKiem(){
+    $.ajax({
+      type: "POST",
+      url: "/xuat-nhap/tim-kiem",
+      data: "key=" + $('#timKiem').val()+"&loai="+$('#haha').val(),
+      success: function (data) {
+        $('#loadHH').replaceWith(data);
+      },
+      error: function (data) {
+        alert('Lỗi!');
+      }
+    });
+  }
 </script>
 </body>
 </html>

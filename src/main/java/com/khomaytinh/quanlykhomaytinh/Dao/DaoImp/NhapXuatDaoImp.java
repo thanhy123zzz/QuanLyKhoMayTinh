@@ -46,7 +46,50 @@ public class NhapXuatDaoImp implements XuatNhapDao {
 
     @Override
     public int updatePhieu(PhieuXuatNhap p) {
-        return 0;
+        String updatePhieu = "update PhieuXuatNhap set TrangThai=?,SLLoaiSP=?,TongTienCaPhieu=? where MaPhieu =?";
+        int kq = jdbcTemplate.update(updatePhieu,new Object[]{p.isTrangThai(),p.getChiTietPhieus().size(),p.getTongTienCaPhieu(),p.getMaPhieu()});
+
+        List<ChiTietPhieu> chiTietPhieu = showDetailPhieu(p.getMaPhieu()).getChiTietPhieus();
+        String delete = "delete from chitietphieu where MaPhieu ='"+p.getMaPhieu()+"'";
+        int kq1 =jdbcTemplate.update(delete);
+
+        String insertCt = "insert into chitietphieu values(?,?,?,?,?)";
+        int kq2=0;
+        for(ChiTietPhieu ct: p.getChiTietPhieus()) {
+           kq2 += jdbcTemplate.update(insertCt,new Object[]{p.getMaPhieu(),ct.getIdHangHoa(),ct.getSoLuong(),ct.getHangHoa().getGia(),ct.getThanhTien()});
+        }
+
+        int kq3=0;
+        List<ChiTietPhieu> listCt = new ArrayList<>();
+        for(ChiTietPhieu hf : chiTietPhieu){
+            int diem=0;
+            for(ChiTietPhieu hs:p.getChiTietPhieus()){
+                if(Objects.equals(hf.getHangHoa().getID(), hs.getIdHangHoa()))
+                {
+                    String updateHH;
+                    int hieu = hf.getSoLuong()-hs.getSoLuong();
+                    if(Objects.equals(p.getLoai(), "nhap")){
+                        updateHH = "update hanghoa set SoluongCon = SoluongCon - "+hieu+" where MAHH = '"+hf.getHangHoa().getID()+"'";
+                    }else{
+                        updateHH = "update hanghoa set SoluongCon = SoluongCon + "+hieu+" where MAHH = '"+hf.getHangHoa().getID()+"'";
+                    }
+                    jdbcTemplate.update(updateHH);
+                    break;
+                }
+                diem++;
+                if(diem>=p.getChiTietPhieus().size()){
+                    String updateHH;
+                    if(Objects.equals(p.getLoai(), "nhap")){
+                        updateHH = "update hanghoa set SoluongCon = SoluongCon - "+hf.getSoLuong()+" where MAHH = '"+hf.getHangHoa().getID()+"'";
+                    }else{
+                        updateHH = "update hanghoa set SoluongCon = SoluongCon + "+hf.getSoLuong()+" where MAHH = '"+hf.getHangHoa().getID()+"'";
+                    }
+                    jdbcTemplate.update(updateHH);
+                }
+            }
+        }
+
+        return 1;
     }
 
     @Override
@@ -55,7 +98,24 @@ public class NhapXuatDaoImp implements XuatNhapDao {
     }
 
     @Override
-    public int deletePhieu(int id) {
+    public int deletePhieu(String id) {
+        List<ChiTietPhieu> chiTietPhieu = showDetailPhieu(id).getChiTietPhieus();
+
+        String delete = "delete from chitietphieu where MaPhieu ='" + id + "'";
+        int kq1 = jdbcTemplate.update(delete);
+
+        String updateHH;
+        for (ChiTietPhieu hf : chiTietPhieu){
+            if (Objects.equals(showDetailPhieu(id).getLoai(), "nhap")) {
+                updateHH = "update hanghoa set SoluongCon = SoluongCon - " + hf.getSoLuong() + " where MAHH = '" + hf.getHangHoa().getID() + "'";
+            } else {
+                updateHH = "update hanghoa set SoluongCon = SoluongCon + " + hf.getSoLuong() + " where MAHH = '" + hf.getHangHoa().getID() + "'";
+            }
+            jdbcTemplate.update(updateHH);
+         }
+        String delete2 = "delete from phieuxuatnhap where MaPhieu ='" + id + "'";
+        jdbcTemplate.update(delete2);
+
         return 0;
     }
 
@@ -91,7 +151,7 @@ public class NhapXuatDaoImp implements XuatNhapDao {
 
     @Override
     public List<HangHoa> search_hh(String loai,String key) {
-        List<HangHoa> list = new ArrayList<>();
+        List<HangHoa> list;
         if(Objects.equals(loai, "xuat")){
             String query = "select*from hanghoa where concat_ws(' ',MAHH,Ten,HangSX,Gia) like '%"+key+"%' and SoluongCon >0 ";
             list = jdbcTemplate.query(query,new HangHoaMapper());

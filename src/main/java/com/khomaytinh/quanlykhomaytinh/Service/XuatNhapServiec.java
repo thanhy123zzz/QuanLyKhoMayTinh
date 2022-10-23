@@ -9,7 +9,7 @@ public interface XuatNhapServiec {
     int insertPhieu(PhieuXuatNhap p);
     int updatePhieu(PhieuXuatNhap p);
     int updateTrangThaiPhieu(Boolean p);
-    int deletePhieu(int id);
+    int deletePhieu(String id);
 
     List<PhieuXuatNhap> showList(String loai);
     PhieuXuatNhap showDetailPhieu(String id);

@@ -26,7 +26,14 @@ public class XuatNhapServiceImp implements XuatNhapServiec {
 
     @Override
     public int updatePhieu(PhieuXuatNhap p) {
-        return 0;
+        List<ChiTietPhieu> list = new ArrayList<>();
+        for(ChiTietPhieu ct : p.getChiTietPhieus()){
+            ct.setHangHoa(showDetailHH(ct.getIdHangHoa()));
+            list.add(ct);
+        }
+        p.setChiTietPhieus(list);
+
+        return xuatNhapDao.updatePhieu(p);
     }
 
     @Override
@@ -35,8 +42,8 @@ public class XuatNhapServiceImp implements XuatNhapServiec {
     }
 
     @Override
-    public int deletePhieu(int id) {
-        return 0;
+    public int deletePhieu(String id) {
+        return xuatNhapDao.deletePhieu(id);
     }
 
     @Override
@@ -47,6 +54,7 @@ public class XuatNhapServiceImp implements XuatNhapServiec {
     @Override
     public PhieuXuatNhap showDetailPhieu(String id) {
         PhieuXuatNhap phieuXuatNhap = xuatNhapDao.showDetailPhieu(id);
+        if(phieuXuatNhap==null) return null;
         phieuXuatNhap.setAccounts(loginService.CheckUserName(phieuXuatNhap.getAccounts().getUserName()));
         List<ChiTietPhieu> list = new ArrayList<>();
         for(ChiTietPhieu ct : phieuXuatNhap.getChiTietPhieus()){
