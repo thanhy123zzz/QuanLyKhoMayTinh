@@ -99,7 +99,7 @@ public class XuatNhapController extends Common{
         return mv;
     }
     @PostMapping("/check-ma-phieu")
-    public ModelAndView check_ma_phieu(HttpSession session,@RequestParam("maPhieu")String maPhieu){
+    public ModelAndView check_ma_phieu(@RequestParam("maPhieu")String maPhieu){
         if(xuatNhapServiec.showDetailPhieu(maPhieu)==null) {
             mv.setViewName("Fragments/1Vai :: #maHH1");
         }else{
@@ -107,7 +107,6 @@ public class XuatNhapController extends Common{
         }
         return mv;
     }
-
 
     //Lịch sử Nhập
     @GetMapping("/lich-su-nhap")
@@ -126,10 +125,52 @@ public class XuatNhapController extends Common{
     }
 
     @GetMapping ("/lich-su/{maPhieu}")
-    public ModelAndView chi_tiet_phieu_nhap(@PathVariable("maPhieu") String maPhieu){
+    public ModelAndView chi_tiet_phieu_nhap(HttpSession session,@PathVariable("maPhieu") String maPhieu){
         mv.setViewName("XuatNhap/XemChiTietDon");
         PhieuXuatNhap p = xuatNhapServiec.showDetailPhieu(maPhieu);
+        List<ChiTietPhieu> list = p.getChiTietPhieus();
+        session.setAttribute("chiTietPhieus",list);
         mv.addObject("phieuXuatNhap",p);
+        return mv;
+    }
+
+    @PostMapping("/sua")
+    public ModelAndView sua(PhieuXuatNhap phieuXuatNhap){
+        xuatNhapServiec.updatePhieu(phieuXuatNhap);
+        if(Objects.equals(phieuXuatNhap.getLoai(), "nhap")){
+            mv.setViewName("redirect:/xuat-nhap/lich-su-nhap");
+        }else {
+            mv.setViewName("redirect:/xuat-nhap/lich-su-xuat");
+        }
+        return mv;
+    }
+    @PostMapping("/change-chitiet")
+    public ModelAndView change_ct(@RequestParam("index")int index,HttpSession session){
+        mv.setViewName("XuatNhap/XemChiTietDon :: #bodyTable");
+        List<ChiTietPhieu> list = (List<ChiTietPhieu>) session.getAttribute("chiTietPhieus");
+        list.remove(index);
+        mv.addObject("chiTietPhieus",list);
+        return mv;
+    }
+
+    @PostMapping("/xoa-phieu-nhap")
+    public ModelAndView xoa_phieu(@RequestParam("idPhieu") String maPhieu){
+        xuatNhapServiec.deletePhieu(maPhieu);
+        mv.addObject("Phieus", xuatNhapServiec.showList("nhap"));
+        mv.setViewName("XuatNhap/Lichsunhapkho :: #listPhieuNhap");
+        return mv;
+    }
+    @PostMapping("/xoa-phieu-xuat")
+    public ModelAndView xoa_phieu_xuat(@RequestParam("idPhieu") String maPhieu){
+        xuatNhapServiec.deletePhieu(maPhieu);
+        mv.addObject("Phieus", xuatNhapServiec.showList("xuat"));
+        mv.setViewName("XuatNhap/Lichsuxuatkho :: #listPhieuNhap");
+        return mv;
+    }
+    @PostMapping("/tim-kiem")
+    public ModelAndView tim_kiem(@RequestParam("key")String key,@RequestParam("loai")String loai){
+        mv.addObject("hhs",xuatNhapServiec.search_hh(loai,key));
+        mv.setViewName("XuatNhap/TaoDonXN :: #loadHH");
         return mv;
     }
 }

@@ -35,7 +35,7 @@
                   <th>Tùy chọn</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="listPhieuNhap">
                   <tr th:each="phieu : ${Phieus}">
                     <td style="vertical-align: middle" th:text="${phieu.getMaPhieu()}"></td>
                     <td style="vertical-align: middle" th:text="${phieu.getNgayXP()}"></td>
@@ -45,6 +45,7 @@
                     <td style="vertical-align: middle" th:text="${phieu.isTrangThai()==true?'Hoàn thành':'Thất bại'}"></td>
                     <td style="vertical-align: middle">
                       <a th:href="@{${'/xuat-nhap/lich-su/'+phieu.getMaPhieu()}}"> Chi tiết </a>
+                      <i th:data-id="${phieu.getMaPhieu()}" onclick="alertFn(this.getAttribute('data-id'))" class="bi bi-x-lg" style="cursor: pointer"></i>
                     </td>
                   </tr>
               </tbody>

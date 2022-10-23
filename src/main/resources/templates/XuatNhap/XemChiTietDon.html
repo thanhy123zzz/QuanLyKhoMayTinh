@@ -27,17 +27,19 @@
         <div class="row">
           <div class="col-lg-6" style="width: 100%">
             <div class="card">
-              <form class="card-body" th:object="${phieuXuatNhap}">
+              <form class="card-body" th:object="${phieuXuatNhap}" th:action="@{/xuat-nhap/sua}" method="post">
                 <h5 class="card-title">Chi tiết phiếu</h5>
                 <div class="row mb-3">
                   <label for="inputDate" class="col-sm-2 col-form-label" style="padding-top: 0">Mã phiếu</label>
                   <div class="col-sm-10">
                     <label for="" th:text="${phieuXuatNhap.getMaPhieu()}"></label>
+                    <input th:value="${phieuXuatNhap.getMaPhieu()}" name="MaPhieu" style="display: none">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label" style="padding-top: 0">Loại phiếu</label>
                       <div class="col-sm-10" th:text="${phieuXuatNhap.getLoai()=='nhap'?'Nhập':'Xuất'}"></div>
+                  <input name="loai" th:value="${phieuXuatNhap.getLoai()=='nhap'?'nhap':'xuat'}" type="text" style="display: none">
                 </div>
                 <div class="row mb-3">
                   <label for="inputDate" class="col-sm-2 col-form-label" style="padding-top: 0">Ngày</label>
@@ -54,13 +56,13 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label" style="padding-top: 0">Số loại hàng hóa</label>
                   <div class="col-sm-10">
-                    <label for="" th:text="${phieuXuatNhap.soLoaiSP}"></label>
+                    <input readonly name="SoLoai" id="SoLoai" th:value="${phieuXuatNhap.soLoaiSP}" style="border: 0;outline: 0;background-color: transparent">
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label" style="padding-top: 0">Số loại hàng hóa</label>
+                  <label for="inputText" class="col-sm-2 col-form-label" style="padding-top: 0">Trạng thái</label>
                   <div class="col-sm-10">
-                    <select style="padding: 0 12px 7px 12px">
+                    <select id="trangThai" name="trangThai" onchange="ShowBtn()" style="padding: 0 12px 7px 12px">
                       <option selected value="false">Thất bại</option>
                       <option selected th:if="${phieuXuatNhap.isTrangThai()}" value="true">Hoàn thành</option>
                     </select>
@@ -77,23 +79,45 @@
                     <th></th>
                   </tr>
                   </thead>
-                  <tbody>
-                      <tr th:each="hh: ${phieuXuatNhap.getChiTietPhieus()}">
-                        <td style="vertical-align: middle" th:text="${hh.getHangHoa().getID()}">
+                  <tbody id="bodyTable">
+                      <tr th:each="hh,stat: ${session.chiTietPhieus}">
+                        <td style="vertical-align: middle">
+                          <input th:name="|chiTietPhieus[${stat.index}].idHangHoa|"
+                                 th:value="${hh.getHangHoa().getID()}"
+                                 readonly
+                                 style="border: 0;outline: 0;background-color: transparent"
+                                 type="text">
                         </td>
+
                         <td th:text="${hh.getHangHoa().getTen()}" style="vertical-align: middle; width: 400px">
                         </td>
-                        <td style="vertical-align: middle" th:text="${hh.getSoLuong()}">
+
+                        <td style="vertical-align: middle" th:with="max=${hh.getHangHoa().getSoLuongCon()+hh.getSoLuong()}">
+                          <input class="soLuong" th:data-id="${stat.index}"
+                                 onchange="thanhTien(this.getAttribute('data-id'))"
+                                 th:id="${stat.index}"
+                                 th:name="|chiTietPhieus[${stat.index}].soLuong|"
+                                 type="number" min="1"
+                                 th:value="${hh.getSoLuong()}"
+                                 th:max="${max}"
+                                 style="width: 70px"/>
                         </td>
-                        <td th:text="${hh.getDonGia()}" style="vertical-align: middle">
+
+                        <td th:id="${'gia'+stat.index}"
+                            th:text="${hh.getHangHoa().getGia()}"
+                            style="vertical-align: middle">
+
                         </td>
-                        <td style="vertical-align: middle" th:text="${hh.getThanhTien()}">
+
+                        <td style="vertical-align: middle">
+                          <input th:value="${hh.getThanhTien()}"
+                                 th:id="${'tong'+stat.index}"
+                                 th:name="|chiTietPhieus[${stat.index}].thanhTien|"
+                                 readonly style="border: 0;outline: 0;background-color: transparent"
+                                 type="text">
                         </td>
                         <td>
-                          <a th:href="@{${'/xuat-nhap/lich-su/'+phieuXuatNhap.getMaPhieu()+'/'+hh.getHangHoa().getID()}}">
-                            <i class="bi bi-pencil-square"></i>
-                          </a>
-                          <i class="bi bi-x-lg" style="cursor: pointer"></i>
+                          <i th:data-id="${stat.index}" onclick="xoaRow(this.getAttribute('data-id'))" class="bi bi-x-lg" style="cursor: pointer"></i>
                         </td>
                       </tr>
                   </tbody>
@@ -102,7 +126,13 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th th:text="${phieuXuatNhap.getTongTienCaPhieu()}">
+                    <th>
+                      <input id="tongPhieu"
+                             th:value="${phieuXuatNhap.getTongTienCaPhieu()}"
+                             readonly
+                             style="border: 0;outline: 0;background-color: transparent"
+                             type="text"
+                             name="tongTienCaPhieu">
                     </th>
                     <th></th>
                   </tr>
@@ -110,18 +140,23 @@
 
                 <div class="row mb-3">
                   <div class="col-sm-10"
-                       style="display: flex; justify-content: center">
-                    <button id="btnXacNhan" type="submit" class="btn btn-primary">
-                      Xác nhận
+                       style="display: flex; justify-content: flex-end">
+                    <button style="display: none;" id="btnXacNhan" type="submit" class="btn btn-primary">
+                      Lưu
                     </button>
                   </div>
                 </div>
-                <!-- End General Form Elements -->
               </form>
             </div>
           </div>
         </div>
       </section>
+      <script>
+        function ShowBtn(){
+          document.getElementById('btnXacNhan').style.display = 'block';
+        }
+
+      </script>
     </main>
 
   </body>
