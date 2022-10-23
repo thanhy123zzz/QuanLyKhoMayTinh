@@ -36,31 +36,17 @@
                 </tr>
               </thead>
               <tbody>
-                <c:forEach items="${listP}" var="product">
-                  <tr>
-                    <td style="vertical-align: middle">DX01</td>
-                    <td style="vertical-align: middle">20/10/2022</td>
-                    <td style="vertical-align: middle">Uy 123</td>
-                    <td style="vertical-align: middle">10</td>
-                    <td style="vertical-align: middle">120,000,000</td>
-                    <td style="vertical-align: middle">Hoàn thành</td>
+              <tr th:each="phieu : ${Phieus}">
+                    <td style="vertical-align: middle" th:text="${phieu.getMaPhieu()}"></td>
+                    <td style="vertical-align: middle" th:text="${phieu.getNgayXP()}"></td>
+                    <td style="vertical-align: middle" th:text="${phieu.getAccounts().getUserName()}"></td>
+                    <td style="vertical-align: middle" th:text="${phieu.getSoLoaiSP()}"></td>
+                    <td style="vertical-align: middle" th:text="${phieu.getTongTienCaPhieu()}"></td>
+                    <td style="vertical-align: middle" th:text="${phieu.isTrangThai()==true?'Hoàn thành':'Thất bại'}"></td>
                     <td style="vertical-align: middle">
-                      <a href="Suaphieuxuat.html">
-                        <i
-                          class="bi bi-pencil-square"
-                          style="margin-right: 10px; margin-left: 10px"
-                        ></i>
-                      </a>
-                      <a href="">
-                        <i
-                          class="bi bi-trash"
-                          style="margin-right: 10px; margin-left: 10px"
-                        ></i>
-                      </a>
-                      <a href="DonXuat.html"> Chi tiết </a>
+                         <a th:href="@{${'/xuat-nhap/lich-su/'+phieu.getMaPhieu()}}"> Chi tiết </a>
                     </td>
                   </tr>
-                </c:forEach>
               </tbody>
             </table>
           </div>

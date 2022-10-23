@@ -1,5 +1,6 @@
 package com.khomaytinh.quanlykhomaytinh.Dao;
 
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 import com.khomaytinh.quanlykhomaytinh.Model.Laptop;
 
 import java.io.IOException;
@@ -14,6 +15,8 @@ public interface LaptopDao {
 
     Laptop showDetail(String id);
 
+    HangHoa check_id(String id);
     int delete(String id);
+
 
 }

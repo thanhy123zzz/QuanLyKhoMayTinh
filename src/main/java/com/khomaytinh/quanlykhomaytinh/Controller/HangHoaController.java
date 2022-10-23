@@ -79,7 +79,7 @@ public class HangHoaController extends Common{
     }
     @PostMapping("/check_id_laptop")
     public ModelAndView check_id_laptop(@RequestParam("idLaptop")String idlap){
-        if(hangHoaService.showDetail(idlap)==null){
+        if(hangHoaService.check_id(idlap)==null){
             mv.setViewName("Fragments/1Vai :: #maHH1");
         }else{
             mv.setViewName("Fragments/1Vai :: #maHH");

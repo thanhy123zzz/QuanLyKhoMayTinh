@@ -1,7 +1,9 @@
 package com.khomaytinh.quanlykhomaytinh.Dao.DaoImp;
 
 import com.khomaytinh.quanlykhomaytinh.Dao.LaptopDao;
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 import com.khomaytinh.quanlykhomaytinh.Model.Laptop;
+import com.khomaytinh.quanlykhomaytinh.Model.Mapper.HangHoaMapper;
 import com.khomaytinh.quanlykhomaytinh.Model.Mapper.LapTopMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -65,6 +67,13 @@ public class LaptopDaoImp implements LaptopDao {
         if(jdbcTemplate.query(query,new LapTopMapper()).size()==0)
         return null;
         else return jdbcTemplate.query(query,new LapTopMapper()).get(0);
+    }
+    @Override
+    public HangHoa check_id(String id) {
+        String query = "select*from hanghoa where MAHH = '"+id+"'";
+        if(jdbcTemplate.query(query,new HangHoaMapper()).size()==0)
+            return null;
+        else return jdbcTemplate.query(query,new HangHoaMapper()).get(0);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.khomaytinh.quanlykhomaytinh.Service.ServiceImp;
 
 import com.khomaytinh.quanlykhomaytinh.Dao.LaptopDao;
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 import com.khomaytinh.quanlykhomaytinh.Model.Laptop;
 import com.khomaytinh.quanlykhomaytinh.Service.LapTopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,10 @@ public class LapTopServiceImp implements LapTopService {
     public int delete(String id) {
         return laptopDao.delete(id);
     }
+
+    @Override
+    public HangHoa check_id(String id) {
+        return laptopDao.check_id(id);
+    }
+
 }

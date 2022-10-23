@@ -5,6 +5,15 @@ public class ChiTietPhieu {
     private int soLuong;
     private Double donGia;
     private Double thanhTien;
+    private String idHangHoa;
+
+    public String getIdHangHoa() {
+        return idHangHoa;
+    }
+
+    public void setIdHangHoa(String idHangHoa) {
+        this.idHangHoa = idHangHoa;
+    }
 
     public HangHoa getHangHoa() {
         return hangHoa;
