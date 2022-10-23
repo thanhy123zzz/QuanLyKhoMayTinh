@@ -145,6 +145,86 @@ function xapSep(){
     }
   });
 }
+function xapSepChuot(){
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/chuot",
+	    data: "xs="+$('#xapSep').val(),
+	    success: function(data) {
+	      $('#listChuot').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+function xapSepLoa(){
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/loa",
+	    data: "xs="+$('#xapSep').val(),
+	    success: function(data) {
+	      $('#listLoa').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+function xapSepManHinh(){
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/man-hinh",
+	    data: "xs="+$('#xapSep').val(),
+	    success: function(data) {
+	      $('#listManHinh').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+function xapSepPC(){
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/pc",
+	    data: "xs="+$('#xapSep').val(),
+	    success: function(data) {
+	      $('#listPC').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+function xapSepTaiNghe(){
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/tai-nghe",
+	    data: "xs="+$('#xapSep').val(),
+	    success: function(data) {
+	      $('#listTaiNghe').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+function xapSepBanPhim(){
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/ban-phim",
+	    data: "xs="+$('#xapSep').val(),
+	    success: function(data) {
+	      $('#listBanPhim').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+
+//hiển thị thêm lap top
 function show_more_laptop(limit){
   let xs = $('#xapSep').val();
   if(xs==null){
@@ -162,6 +242,110 @@ function show_more_laptop(limit){
     }
   });
 }
+function show_more_chuot(limit){
+	  let xs = $('#xapSep').val();
+	  if(xs==null){
+	      xs = 1;
+	    }
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/show_more_chuot",
+	    data: "xs="+xs+"&limit="+limit,
+	    success: function(data) {
+	      $('#listChuot').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+function show_more_loa(limit){
+	  let xs = $('#xapSep').val();
+	  if(xs==null){
+	      xs = 1;
+	    }
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/show_more_loa",
+	    data: "xs="+xs+"&limit="+limit,
+	    success: function(data) {
+	      $('#listLoa').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+function show_more_man_hinh(limit){
+	  let xs = $('#xapSep').val();
+	  if(xs==null){
+	      xs = 1;
+	    }
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/show_more_man_hinh",
+	    data: "xs="+xs+"&limit="+limit,
+	    success: function(data) {
+	      $('#listManHinh').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+function show_more_pc(limit){
+	  let xs = $('#xapSep').val();
+	  if(xs==null){
+	      xs = 1;
+	    }
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/show_more_pc",
+	    data: "xs="+xs+"&limit="+limit,
+	    success: function(data) {
+	      $('#listPC').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+function show_more_tai_nghe(limit){
+	  let xs = $('#xapSep').val();
+	  if(xs==null){
+	      xs = 1;
+	    }
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/show_more_tai_nghe",
+	    data: "xs="+xs+"&limit="+limit,
+	    success: function(data) {
+	      $('#listTaiNghe').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+function show_more_ban_phim(limit){
+	  let xs = $('#xapSep').val();
+	  if(xs==null){
+	      xs = 1;
+	    }
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/show_more_ban_phim",
+	    data: "xs="+xs+"&limit="+limit,
+	    success: function(data) {
+	      $('#listBanPhim').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+
+	//check id lap
   $('#LaptopID').on('blur', function (){
 
     if($('#LaptopID').val()!=="") {
@@ -182,22 +366,322 @@ function show_more_laptop(limit){
               '</div>')
     }
   });
- function xoa_Lap(id) {
-    if (confirm('Bạn có muốn xoá laptop này?')) {
-      $.ajax({
-        type: "POST",
-        url: "/hang-hoa/xoa-lap",
-        data: "idLaptop=" + id,
-        success: function () {
-          alert('Thành công!');
-          window.location = '/hang-hoa/laptop';
-        },
-        error: function (data) {
-          alert('Lỗi!');
-        }
-      });
-    }
-  }
+  
+  $('#ChuotID').on('blur', function (){
+
+	    if($('#ChuotID').val()!=="") {
+	      $.ajax({
+	        type: "POST",
+	        url: "/hang-hoa/check_id_chuot",
+	        data: "idChuot=" + $('#ChuotID').val(),
+	        success: function (data) {
+	          $('.message').replaceWith(data);
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	    else{
+	      $('.message').replaceWith('<div id="maHH1" class="message" style="display: none">\n' +
+	              '</div>')
+	    }
+	  });
+  //check id loa
+  $('#LoaID').on('blur', function (){
+
+	    if($('#LoaID').val()!=="") {
+	      $.ajax({
+	        type: "POST",
+	        url: "/hang-hoa/check_id_loa",
+	        data: "idLoa=" + $('#LoaID').val(),
+	        success: function (data) {
+	          $('.message').replaceWith(data);
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	    else{
+	      $('.message').replaceWith('<div id="maHH1" class="message" style="display: none">\n' +
+	              '</div>')
+	    }
+	  });
+  // check id manhinh
+  $('#ManHinhID').on('blur', function (){
+
+	    if($('#ManHinhID').val()!=="") {
+	      $.ajax({
+	        type: "POST",
+	        url: "/hang-hoa/check_id_man_hinh",
+	        data: "idManHinh=" + $('#ManHinhID').val(),
+	        success: function (data) {
+	          $('.message').replaceWith(data);
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	    else{
+	      $('.message').replaceWith('<div id="maHH1" class="message" style="display: none">\n' +
+	              '</div>')
+	    }
+	  });
+  // check id pc
+  $('#PCID').on('blur', function (){
+
+	    if($('#PCID').val()!=="") {
+	      $.ajax({
+	        type: "POST",
+	        url: "/hang-hoa/check_id_pc",
+	        data: "idPC=" + $('#PCID').val(),
+	        success: function (data) {
+	          $('.message').replaceWith(data);
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	    else{
+	      $('.message').replaceWith('<div id="maHH1" class="message" style="display: none">\n' +
+	              '</div>')
+	    }
+	  });
+  //check id tai nghe 
+  $('#TaiNgheID').on('blur', function (){
+
+	    if($('#TaiNgheID').val()!=="") {
+	      $.ajax({
+	        type: "POST",
+	        url: "/hang-hoa/check_id_tai_nghe",
+	        data: "idTaiNghe=" + $('#TaiNgheID').val(),
+	        success: function (data) {
+	          $('.message').replaceWith(data);
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	    else{
+	      $('.message').replaceWith('<div id="maHH1" class="message" style="display: none">\n' +
+	              '</div>')
+	    }
+	  });
+  // check id bàn phím
+    $('#BanPhimID').on('blur', function (){
+
+	    if($('#BanPhimID').val()!=="") {
+	      $.ajax({
+	        type: "POST",
+	        url: "/hang-hoa/check_id_ban_phim",
+	        data: "idBanPhim=" + $('#BanPhimID').val(),
+	        success: function (data) {
+	          $('.message').replaceWith(data);
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	    else{
+	      $('.message').replaceWith('<div id="maHH1" class="message" style="display: none">\n' +
+	              '</div>')
+	    }
+	  });
+  function show_ban_phim_on_modal(id){
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/show-ban-phim-on-modal",
+	    data: "maHH="+id,
+	    success: function(data) {
+	      $('#modalSua').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+  function show_chuot_on_modal(id){
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/show-chuot-on-modal",
+	    data: "maHH="+id,
+	    success: function(data) {
+	      $('#modalSua').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+  function show_loa_on_modal(id){
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/show-loa-on-modal",
+	    data: "maHH="+id,
+	    success: function(data) {
+	      $('#modalSua').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+  function show_man_hinh_on_modal(id){
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/show-man-hinh-on-modal",
+	    data: "maHH="+id,
+	    success: function(data) {
+	      $('#modalSua').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+  function show_pc_on_modal(id){
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/show-pc-on-modal",
+	    data: "maHH="+id,
+	    success: function(data) {
+	      $('#modalSua').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+  function show_tai_nghe_on_modal(id){
+	  $.ajax({
+	    type : "POST",
+	    url: "/hang-hoa/show-tai-nghe-on-modal",
+	    data: "maHH="+id,
+	    success: function(data) {
+	      $('#modalSua').replaceWith(data);
+	    },
+	    error: function(data){
+	      alert("lỗi!");
+	    }
+	  });
+	}
+  function xoa_Lap(id) {
+	    if (confirm('Bạn có muốn xoá laptop này?')) {
+	      $.ajax({
+	        type: "POST",
+	        url: "/hang-hoa/xoa-lap",
+	        data: "idLaptop=" + id,
+	        success: function () {
+	          alert('Thành công!');
+	          window.location = '/hang-hoa/laptop';
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	  }
+  function xoa_ban_phim(id) {
+	    if (confirm('Bạn có muốn xoá bàn phím này?')) {
+	      $.ajax({
+	        type: "POST",
+	        url: "/hang-hoa/xoa-ban-phim",
+	        data: "idBanPhim=" + id,
+	        success: function () {
+	          alert('Thành công!');
+	          window.location = '/hang-hoa/ban-phim';
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	  }
+  function xoa_chuot(id) {
+	    if (confirm('Bạn có muốn xoá chuột này?')) {
+	      $.ajax({
+	        type: "POST",
+	        url: "/hang-hoa/xoa-chuot",
+	        data: "idChuot=" + id,
+	        success: function () {
+	          alert('Thành công!');
+	          window.location = '/hang-hoa/chuot';
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	  }
+  function xoa_loa(id) {
+	    if (confirm('Bạn có muốn xoá loa này?')) {
+	      $.ajax({
+	        type: "POST",
+	        url: "/hang-hoa/xoa-loa",
+	        data: "idLoa=" + id,
+	        success: function () {
+	          alert('Thành công!');
+	          window.location = '/hang-hoa/loa';
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	  }
+  function xoa_man_hinh(id) {
+	    if (confirm('Bạn có muốn xoá màn hình này?')) {
+	      $.ajax({
+	        type: "POST",
+	        url: "/hang-hoa/xoa-man-hinh",
+	        data: "idManHinh=" + id,
+	        success: function () {
+	          alert('Thành công!');
+	          window.location = '/hang-hoa/man-hinh';
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	  }
+  function xoa_pc(id) {
+	    if (confirm('Bạn có muốn xoá pc này?')) {
+	      $.ajax({
+	        type: "POST",
+	        url: "/hang-hoa/xoa-pc",
+	        data: "idPC=" + id,
+	        success: function () {
+	          alert('Thành công!');
+	          window.location = '/hang-hoa/pc';
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	  }
+  function xoa_tai_nghe(id) {
+	    if (confirm('Bạn có muốn xoá tai nghe này?')) {
+	      $.ajax({
+	        type: "POST",
+	        url: "/hang-hoa/xoa-tai-nghe",
+	        data: "idTaiNghe=" + id,
+	        success: function () {
+	          alert('Thành công!');
+	          window.location = '/hang-hoa/tai-nghe';
+	        },
+	        error: function (data) {
+	          alert('Lỗi!');
+	        }
+	      });
+	    }
+	  }
   document.getElementById('ngayTao').valueAsDate = new Date();
 </script>
 </body>

@@ -30,9 +30,9 @@
               <div class="card-body pt-4 d-flex flex-column align-items-center">
                 <img
                   style="width: 300px; height: 250px"
-                  src="assets/img/product-5.jpg"
+                 th:src="@{${'/hang-hoa/anh-tai-nghe/'+tainghe.getID()}}"
                 />
-                <h2>Tai nghe hyperX</h2>
+                <h2  th:text="${tainghe.getTen()}"></h2>
               </div>
             </div>
           </div>
@@ -61,53 +61,53 @@
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Giá</div>
-                      <div class="col-lg-9 col-md-8">2000000Đ</div>
+                      <div class="col-lg-9 col-md-8" th:text="${tainghe.getGia()}+'VNĐ'"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Hãng sản xuất</div>
-                      <div class="col-lg-9 col-md-8">hyper</div>
+                      <div class="col-lg-9 col-md-8" th:text="${tainghe.getHangSX()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Model</div>
-                      <div class="col-lg-9 col-md-8">8gb ĐR4</div>
+                      <div class="col-lg-9 col-md-8" th:text="${tainghe.getModel()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Kết nối</div>
-                      <div class="col-lg-9 col-md-8">066257882258</div>
+                      <div class="col-lg-9 col-md-8" th:text="${tainghe.getKetNoi()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Kiểu</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${tainghe.getKieuTN()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Led</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${tainghe.getLed()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Màu sắc</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${tainghe.getMau()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Tần số</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${tainghe.getTanSo()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">
                         Khả năng cách âm
                       </div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${tainghe.getKhaNangCachAm()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Chất liệu</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${tainghe.getChatLieu()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Trọng lượng</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${tainghe.getTrongLuong()}"></div>
                     </div>
                   </div>
 

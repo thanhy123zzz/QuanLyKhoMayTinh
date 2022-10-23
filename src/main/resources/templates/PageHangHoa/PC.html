@@ -23,42 +23,47 @@
 
       <section class="section">
         <div
-          style="margin-bottom: 20px; display: flex; justify-content: flex-end"
-        >
-          <a class="btn btn-success" href="#addModal">
-            <span>Thêm Sản Phẩm</span></a
+                  style="margin-bottom: 20px; display: flex; justify-content: space-between"
           >
-        </div>
-        <div class="product" style="display: flex; flex-wrap: wrap">
+              <a  class="btn btn-success" href="#addModal">
+                  <span>Thêm Sản Phẩm</span></a
+              >
+              <div >
+                  <div class="dropdown" >
+                      <select
+                              class="form-select"
+                              aria-label="Default select example" id="xapSep" onchange="xapSepPC()">
+                          <option selected disabled>Sắp xếp theo</option>
+                          <option value="1">Giá: Thấp đến cao</option>
+                          <option value="2">Giá: Cao đến thấp</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+        <div id="listPC" class="product" style="display: flex; flex-wrap: wrap">
         
-          <ul>
+         <ul th:each="pc : ${pcs}">
             <div class="card">
               <div
                 class="profile-card pt-4 d-flex flex-column"
-                style="padding: 0 10px 0 10px"
-              >
-                <img
-                  style="width: 300px; height: 250px"
-                  src="/assets/img/product-5.jpg"
-                />
-                <h5 style="margin-top: 10px">Tai nghe hiperx</h5>
-            
-                <h6>Giá: 12000000đ</h6>
+                style="padding: 0 10px 0 10px">
+                <img style="width: 300px; height: 250px"
+                  th:src="@{${'/hang-hoa/anh-pc/'+pc.getID()}}"/>
+                  <p id="idPC" style="display: none" th:text="${pc.getID()}"></p>
+                <h5 style="margin-top: 10px; width: 300px; height: 45px;" th:text="${pc.getTen()}"></h5>
+                <h6 th:text="'Giá: '+${pc.getGia()}"></h6>
                 <div style="display: flex; justify-content: space-between">
-                <h6>Còn: 40</h6>
-                <label for="" style="display: none;"> hết hàng</label>
+                <h6 th:if="${pc.getSoLuongCon()!=0}" th:text="'Còn: '+${pc.getSoLuongCon()}"></h6>
+                <label th:unless="${pc.getSoLuongCon()!=0}" for="" style="display: block; color: red"> hết hàng</label>
                 </div>
-                <div
-                  class="social-links"
-                  style="display: flex; justify-content: space-between"
-                >
+                <div class="social-links" style="display: flex; justify-content: space-between">
                   <div>
-                    <a class="chinhsua" href="#editModal"
-                      ><i class="bi bi-pencil-square"></i
+                    <a  class="chinhsua" href="#editModal" th:data-parameter1 ="${pc.getID()}" onclick="show_pc_on_modal(this.getAttribute('data-parameter1'))"><i class="bi bi-pencil-square"></i
+
                     ></a>
-                    <a href="#" class="Xoa"><i class="bi bi-trash"></i></a>
+                     <a class="Xoa" th:data-parameter1 ="${pc.getID()}" onclick="xoa_pc(this.getAttribute('data-parameter1'))"><i class="bi bi-trash"></i></a>
                   </div>
-                  <a th:href="@{/hang-hoa/pc-ct}" class="chitiet"><i class="=">Chi tiết</i></a>
+                  <a th:href="@{${'/hang-hoa/pc-ct/'+pc.getID()}}" class="chitiet"><i class="=">Chi tiết</i></a>
                 </div>
               </div>
             </div>
@@ -66,19 +71,19 @@
      
         </div>
         <div >
-          <a href="" style="          
+          <a th:data-limit="${pcs.size()}" style="        
           display: block;           
           margin: 5px auto 15px;
           padding: 15px 20px;
-          text-align: center;" ><i>Xem thêm>>></i></a>
-      </div>   
+          text-align: center; cursor: pointer" onclick="show_more_pc(this.getAttribute('data-limit'))"><i>Xem thêm</i></a>
+        </div>  
         <div id="addModal" class="modal">
           <a href="#" class="fade" style="position: fixed;"></a>
           <div class="modal-dialog1" style="width: 680px; margin-left: auto; margin-right: auto;" >
             
               <div class="modal-content">
                
-                  <form action="" method="get">
+                  <form th:action="@{/hang-hoa/them-pc}" method="post" enctype="multipart/form-data">
                       <div class="modal-header">						
                           <h4 class="modal-title">Thêm sản phẩm</h4>
                           <a class="close" data-dismiss="modal" href="#">&times;</a>
@@ -87,73 +92,75 @@
                         <div class="form-group" style="display: flex; ">
                           <div>
                           <label style="margin-bottom: 70px;">Hình ảnh</label>
-                          <input name="hinhanh" class="form-control" type="file" id="Fileimage" onchange="chooseFile(this)" accept="image/gif image/png image/jpeg">
+                          <input name="hinhAnhbit" class="form-control" type="file" id="Fileimage" onchange="chooseFile(this)" accept="image/gif image/png image/jpeg">
                           </div>
                           <div style="max-width: 300px; max-height:250px; margin-left: 10px;">
                               <img src="" alt="" width="300px" height="250px" id="image">
                           </div>
-                        </div>		
-                          
+                      </div>
+                          <div class="form-group">
+                              <label>Mã hàng hoá</label>
+                              <input name="ID" type="text" class="form-control" required id="PCID">
+                              <div id="maHH" style="display: none" class="message">
+                              </div>
+                          </div>
                           <div class="form-group">
                               <label>Tên hàng hóa</label>
-                              <input name="name" type="text" class="form-control" required>
+                              <input name="Ten" type="text" class="form-control" required>
                           </div>
                           <div class="form-group">
                               <label>Hãng sản xuất</label>
-                              <input name="type" type="text" class="form-control" required>
+                              <input name="hangSX" type="text" class="form-control" required>
                           </div>
                           <div class="form-group">
                               <label>Giá</label>
-                              <input name="price" class="form-control" required></input>
+                              <input name="gia" class="form-control" required></input>
                           </div>
                           <div class="form-group">
                               <label>Trọng lượng</label>
-                              <input name="image" class="form-control" required></input>
+                              <input name="trongLuong" class="form-control" required></input>
                           </div>  
                           <div class="form-group">
                             <label>Hệ điều hành</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="HeDieuHanh" class="form-control" required></input>
                           </div> 
                           <div class="form-group">
                             <label>Webcam</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="WebCam" class="form-control" required></input>
                           </div> 
                           <div class="form-group">
                             <label>RAM</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="Ram" class="form-control" required></input>
                           </div> 
                           <div class="form-group">
                             <label>CPU</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="CPU" class="form-control" required></input>
                           </div> 
                           <div class="form-group">
                             <label>GPU</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="GPU" class="form-control" required></input>
                           </div>   
                           <div class="form-group">
                             <label>Card</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="CARD" class="form-control" required></input>
                           </div>
                           <div class="form-group">
                             <label>SSD</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="SSD" class="form-control" required></input>
                           </div>   
                           <div class="form-group">
                             <label>HDD</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="HDD" class="form-control" required></input>
                           </div> 
                           <div class="form-group">
                             <label>Màn hình</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="ManHinh" class="form-control" required></input>
                           </div> 
                           <div class="form-group">
                             <label>Main</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="Main" class="form-control" required></input>
                           </div>  
-                          <div class="form-group">
-                            <label>Số lượng còn</label>
-                            <input name="image" class="form-control" required></input>
-                          </div>          
+                              
                       </div>
                       <div class="modal-footer">
                   
@@ -167,9 +174,9 @@
         <a href="#" class="fade" style="position: fixed;"></a>
         <div class="modal-dialog1" style="width: 680px; margin-left: auto; margin-right: auto;" >
           
-            <div class="modal-content">
+            <div id="modalSua" class="modal-content">
              
-                <form action="" method="get">
+                <form th:action="@{/hang-hoa/sua-pc}" method="post" enctype="multipart/form-data">
                     <div class="modal-header">						
                         <h4 class="modal-title">Chỉnh sửa thông tin</h4>
                         <a class="close" data-dismiss="modal" href="#">&times;</a>
@@ -178,75 +185,85 @@
                       <div class="form-group" style="display: flex; ">
                         <div>
                         <label style="margin-bottom: 70px;">Hình ảnh</label>
-                        <input name="hinhanh" class="form-control" type="file" id="Fileimage" onchange="chooseFile(this)" accept="image/gif image/png image/jpeg">
+                        <input name="hinhAnhbit" class="form-control" type="file" id="Fileimage" onchange="chooseFile1(this)" accept="image/gif image/png image/jpeg">
                         </div>
-                        <div style="max-width: 300px; max-height:250px; margin-left: 10px;">
-                            <img src="" alt="" width="300px" height="250px" id="image">
+                          <div id="divImage" style="max-width: 300px; max-height:250px; margin-left: 10px;">
+                              <img th:src="@{${'/hang-hoa/anh-pc/'+pc.getID()}}" alt="" width="300px" height="250px">
+                          </div>
+                        <div id="divImage1" style="max-width: 300px; max-height:250px; margin-left: 10px; display: none">
+                            <img src="" alt="" width="300px" height="250px" id="image1">
                         </div>
                       </div>			
                         <div class="form-group">
                             <label>Mã Hàng hóa</label>
-                            <input name="id" type="text" class="form-control" required disabled>
+                            <input name="ID" th:value="${pc.getID()}" type="text" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                             <label>Tên hàng hóa</label>
-                            <input name="name" type="text" class="form-control" required>
+                            <input name="Ten" th:value="${pc.getTen()}" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Hãng sản xuất</label>
-                            <input name="type" type="text" class="form-control" required>
+                            <input name="hangSX" th:value="${pc.getHangSX()}" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Giá</label>
-                            <input name="price" class="form-control" required></input>
+                            <input name="gia" th:value="${pc.getGia()}" class="form-control" required></input>
                         </div>
                         <div class="form-group">
                             <label>Trọng lượng</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="trongLuong" th:value="${pc.getTrongLuong()}" class="form-control" required></input>
                         </div>  
                         <div class="form-group">
                           <label>Hệ điều hành</label>
-                          <input name="image" class="form-control" required></input>
+                          <input name="HeDieuHanh" th:value="${pc.getHeDieuHanh()}" class="form-control" required></input>
                         </div> 
                         <div class="form-group">
                           <label>Webcam</label>
-                          <input name="image" class="form-control" required></input>
+                          <input name="WebCam" th:value="${pc.getWebCam()}" class="form-control" required></input>
                         </div> 
                         <div class="form-group">
                           <label>RAM</label>
-                          <input name="image" class="form-control" required></input>
+                          <input name="Ram" th:value="${pc.getRam()}" class="form-control" required></input>
                         </div> 
                         <div class="form-group">
                           <label>CPU</label>
-                          <input name="image" class="form-control" required></input>
+                          <input name="CPU" th:value="${pc.getCPU()}" class="form-control" required></input>
                         </div> 
+                        
+                        
                         <div class="form-group">
                           <label>GPU</label>
-                          <input name="image" class="form-control" required></input>
+                          <input name="GPU" th:value="${pc.getGPU()}" class="form-control" required></input>
                         </div>   
                         <div class="form-group">
                           <label>Card</label>
-                          <input name="image" class="form-control" required></input>
+                          <input name="CARD" th:value="${pc.getCARD()}" class="form-control" required></input>
                         </div>
                         <div class="form-group">
                           <label>SSD</label>
-                          <input name="image" class="form-control" required></input>
+                          <input name="SSD" th:value="${pc.getSSD()}" class="form-control" required></input>
                         </div>   
+                        
+                        
                         <div class="form-group">
                           <label>HDD</label>
-                          <input name="image" class="form-control" required></input>
+                          <input name="HDD" th:value="${pc.getHDD()}"  class="form-control" required></input>
                         </div> 
+                        
                         <div class="form-group">
                           <label>Màn hình</label>
-                          <input name="image" class="form-control" required></input>
+                          <input name="ManHinh" th:value="${pc.getManHinh()}" class="form-control" required></input>
                         </div> 
                         <div class="form-group">
                           <label>Main</label>
-                          <input name="image" class="form-control" required></input>
-                        </div>       
+                          <input name="Main" th:value="${pc.getMain()}" class="form-control" required></input>
+                        </div>  
+                        
+                             
                         <div class="form-group">
                           <label>Số lượng còn</label>
-                          <input name="image" class="form-control" required></input>
+                          <input name="SoLuongCon" th:value="${pc.getSoLuongCon()}" class="form-control" required></input>
                         </div>      
                     </div>
                     <div class="modal-footer">

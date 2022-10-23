@@ -30,9 +30,9 @@
               <div class="card-body pt-4 d-flex flex-column align-items-center">
                 <img
                   style="width: 300px; height: 250px"
-                  src="assets/img/product-5.jpg"
+                  th:src="@{${'/hang-hoa/anh-pc/'+pc.getID()}}"
                 />
-                <h2>Tai nghe hyperX</h2>
+                <h2 th:text="${pc.getTen()}"></h2>
               </div>
             </div>
           </div>
@@ -61,63 +61,62 @@
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Giá</div>
-                      <div class="col-lg-9 col-md-8">2000000Đ</div>
+                      <div class="col-lg-9 col-md-8" th:text="${pc.getGia()}+'VNĐ'"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Hãng sản xuất</div>
-                      <div class="col-lg-9 col-md-8">hyper</div>
+                      <div class="col-lg-9 col-md-8" th:text="${pc.getHangSX()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">RAM</div>
-                      <div class="col-lg-9 col-md-8">8gb ĐR4</div>
+                      <div class="col-lg-9 col-md-8" th:text="${pc.getRam()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">CPU</div>
-                      <div class="col-lg-9 col-md-8">066257882258</div>
+                      <div class="col-lg-9 col-md-8" th:text="${pc.getCPU()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">GPU</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${pc.getGPU()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Card</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${pc.getCARD()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Hệ điều hành</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${pc.getHeDieuHanh()}"></div>
                     </div>
+                    
+                    
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Webcam</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${pc.getWebCam()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">SSD</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${pc.getSSD()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">HDD</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${pc.getHDD()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Màn hình</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${pc.getManHinh()}" ></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Main</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${pc.getMain()}"></div>
                     </div>
-                    <div class="row">
-                      <div class="col-lg-3 col-md-4 label">Pin</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
-                    </div>
+                    
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Trọng lượng</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${pc.getTrongLuong()}"></div>
                     </div>
                   </div>
 

@@ -11,5 +11,5 @@ public class QuanLyKhoMayTinhApplication {
     public static void main(String[] args) {
         SpringApplication.run(QuanLyKhoMayTinhApplication.class, args);
     }
-
+//móm tàu nhọn
 }

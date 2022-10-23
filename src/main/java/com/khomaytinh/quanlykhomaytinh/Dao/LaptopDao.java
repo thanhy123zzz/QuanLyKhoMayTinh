@@ -2,6 +2,8 @@ package com.khomaytinh.quanlykhomaytinh.Dao;
 
 import com.khomaytinh.quanlykhomaytinh.Model.Laptop;
 
+
+
 import java.io.IOException;
 import java.util.List;
 

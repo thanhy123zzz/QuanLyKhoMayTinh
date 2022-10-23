@@ -1,4 +1,4 @@
-package com.khomaytinh.quanlykhomaytinh.Service;
+package com.khomaytinh.quanlykhomaytinh.Dao;
 
 import com.khomaytinh.quanlykhomaytinh.Model.TaiNghe;
 
@@ -7,7 +7,7 @@ import com.khomaytinh.quanlykhomaytinh.Model.TaiNghe;
 import java.io.IOException;
 import java.util.List;
 
-public interface TaiNgheService {
+public interface TaiNgheDao {
     int insert(TaiNghe hh) throws IOException;
 
     int update(TaiNghe hh) throws IOException;
@@ -17,4 +17,5 @@ public interface TaiNgheService {
     TaiNghe showDetail(String id);
 
     int delete(String id);
+
 }

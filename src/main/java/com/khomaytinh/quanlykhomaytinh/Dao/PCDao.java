@@ -1,12 +1,13 @@
-package com.khomaytinh.quanlykhomaytinh.Service;
+package com.khomaytinh.quanlykhomaytinh.Dao;
 
-import com.khomaytinh.quanlykhomaytinh.Model.BanPhim;
 import com.khomaytinh.quanlykhomaytinh.Model.PC;
+
+
 
 import java.io.IOException;
 import java.util.List;
 
-public interface PcService {
+public interface PCDao {
     int insert(PC hh) throws IOException;
 
     int update(PC hh) throws IOException;
@@ -16,4 +17,5 @@ public interface PcService {
     PC showDetail(String id);
 
     int delete(String id);
+
 }

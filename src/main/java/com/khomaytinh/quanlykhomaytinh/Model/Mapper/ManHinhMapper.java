@@ -23,7 +23,7 @@ public class ManHinhMapper implements RowMapper<ManHinh> {
         hh.setTanSoQuet(rs.getString("TanSoQuet"));
         hh.setTiLeKhungHinh(rs.getString("TiLeKhungHinh"));
         hh.setLoaiMH(rs.getString("LoaiMH"));
-        hh.setMauSacHienThi(rs.getString("MauSachHienThi"));
+        hh.setMauSacHienThi(rs.getString("MauSacHienThi"));
         return hh;
     }
 }

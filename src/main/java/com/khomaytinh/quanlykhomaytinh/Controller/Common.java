@@ -1,9 +1,19 @@
 package com.khomaytinh.quanlykhomaytinh.Controller;
 
 import com.khomaytinh.quanlykhomaytinh.Model.Accounts;
+
+
+
 import com.khomaytinh.quanlykhomaytinh.Model.Admin;
 import com.khomaytinh.quanlykhomaytinh.Model.ThuKho;
 import com.khomaytinh.quanlykhomaytinh.Service.LapTopService;
+import com.khomaytinh.quanlykhomaytinh.Service.BanPhimService;
+import com.khomaytinh.quanlykhomaytinh.Service.ChuotService;
+import com.khomaytinh.quanlykhomaytinh.Service.LoaService;
+import com.khomaytinh.quanlykhomaytinh.Service.ManHinhService;
+import com.khomaytinh.quanlykhomaytinh.Service.PcService;
+import com.khomaytinh.quanlykhomaytinh.Service.TaiNgheService;
+
 import com.khomaytinh.quanlykhomaytinh.Service.LoginService;
 import com.khomaytinh.quanlykhomaytinh.Service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +31,7 @@ public class Common {
     @Autowired
     LapTopService hangHoaService;
 
+
     @Autowired
     PersonService personService;
 
@@ -29,6 +40,20 @@ public class Common {
 
     @Autowired
     LapTopService lapTopService;
+    
+    @Autowired
+    BanPhimService BanPhimService;
+    
+    @Autowired
+    ChuotService ChuotService;
+    @Autowired
+    LoaService LoaService;
+    @Autowired
+    ManHinhService ManHinhService;
+    @Autowired
+    PcService PcService;
+    @Autowired
+    TaiNgheService TaiNgheService;
 
     Admin perSon(Principal principal){
         if(Objects.equals(loginService.CheckUserName(principal.getName()).getRole().getMaRL(), "ADMIN")){

@@ -28,9 +28,9 @@
               <div class="card-body pt-4 d-flex flex-column align-items-center">
                 <img
                   style="width: 300px; height: 250px"
-                  src="assets/img/product-5.jpg"
+                  th:src="@{${'/hang-hoa/anh-man-hinh/'+manhinh.getID()}}"
                 />
-                <h2>Tai nghe hyperX</h2>
+                <h2 th:text="${manhinh.getTen()}"></h2>
               </div>
             </div>
           </div>
@@ -59,47 +59,47 @@
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Giá</div>
-                      <div class="col-lg-9 col-md-8">2000000Đ</div>
+                      <div class="col-lg-9 col-md-8"  th:text="${manhinh.getGia()}+'VNĐ'" ></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Hãng sản xuất</div>
-                      <div class="col-lg-9 col-md-8">hyper</div>
+                      <div class="col-lg-9 col-md-8" th:text="${manhinh.getHangSX()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Model</div>
-                      <div class="col-lg-9 col-md-8">8gb ĐR4</div>
+                      <div class="col-lg-9 col-md-8" th:text=${manhinh.getModel()}>8gb ĐR4</div>
                     </div>
 
                     <div class="row">
-                      <div class="col-lg-3 col-md-4 label">Kết nối</div>
-                      <div class="col-lg-9 col-md-8">066257882258</div>
+                      <div class="col-lg-3 col-md-4 label" >Kết nối</div>
+                      <div class="col-lg-9 col-md-8" th:text=${manhinh.getKetNoi()}>066257882258</div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Tần số quét</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text=${manhinh.getTanSoQuet()}>(436) 486-3538 x29071</div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">
                         Tỉ lệ khung hình
                       </div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text=${manhinh.getTiLeKhungHinh()}>(436) 486-3538 x29071</div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Loại màn hình</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text=${manhinh.getLoaiMH()}>(436) 486-3538 x29071</div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">
                         Màu sắc hiển thị
                       </div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text=${manhinh.getMauSacHienThi()}>(436) 486-3538 x29071</div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Trọng lượng</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text=${manhinh.getTrongLuong()}>(436) 486-3538 x29071</div>
                     </div>
                   </div>
 
