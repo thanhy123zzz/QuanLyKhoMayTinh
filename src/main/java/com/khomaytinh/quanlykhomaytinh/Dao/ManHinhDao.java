@@ -1,13 +1,12 @@
-package com.khomaytinh.quanlykhomaytinh.Service;
+package com.khomaytinh.quanlykhomaytinh.Dao;
 
 import com.khomaytinh.quanlykhomaytinh.Model.ManHinh;
-
 
 
 import java.io.IOException;
 import java.util.List;
 
-public interface ManHinhService {
+public interface ManHinhDao {
     int insert(ManHinh hh) throws IOException;
 
     int update(ManHinh hh) throws IOException;
@@ -17,4 +16,5 @@ public interface ManHinhService {
     ManHinh showDetail(String id);
 
     int delete(String id);
+
 }

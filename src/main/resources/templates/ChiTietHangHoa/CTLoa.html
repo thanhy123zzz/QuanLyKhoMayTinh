@@ -29,9 +29,9 @@
               <div class="card-body pt-4 d-flex flex-column align-items-center">
                 <img
                   style="width: 300px; height: 250px"
-                  src="assets/img/product-5.jpg"
+                 th:src="@{${'/hang-hoa/anh-loa/'+loa.getID()}}"
                 />
-                <h2>Tai nghe hyperX</h2>
+                <h2 th:text="${loa.getTen()}"></h2>
               </div>
             </div>
           </div>
@@ -60,36 +60,36 @@
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Giá</div>
-                      <div class="col-lg-9 col-md-8">2000000Đ</div>
+                      <div class="col-lg-9 col-md-8" th:text="${loa.getGia()}+'VNĐ'"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Hãng sản xuất</div>
-                      <div class="col-lg-9 col-md-8">hyper</div>
+                      <div class="col-lg-9 col-md-8" th:text="${loa.getHangSX()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Model</div>
-                      <div class="col-lg-9 col-md-8">8gb ĐR4</div>
+                      <div class="col-lg-9 col-md-8" th:text="${loa.getModel()}"> </div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Kết nối</div>
-                      <div class="col-lg-9 col-md-8">066257882258</div>
+                      <div class="col-lg-9 col-md-8" th:text="${loa.getKetNoi()}" ></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Dáng loa</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${loa.getDangLoa()}"  ></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Kiểu loa</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${loa.getKieuLoa()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Trọng lượng</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${loa.getTrongLuong()}"></div>
                     </div>
                   </div>
 

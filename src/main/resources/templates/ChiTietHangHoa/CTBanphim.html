@@ -30,9 +30,9 @@
               <div class="card-body pt-4 d-flex flex-column align-items-center">
                 <img
                   style="width: 300px; height: 250px"
-                  src="assets/img/product-5.jpg"
-                />
-                <h2>Tai nghe hyperX</h2>
+                  th:src="@{${'/hang-hoa/anh-ban-phim/'+banphim.getID()}}"/>
+                
+                <h2 th:text="${banphim.getTen()}"> </h2>
               </div>
             </div>
           </div>
@@ -61,40 +61,40 @@
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Giá</div>
-                      <div class="col-lg-9 col-md-8">2000000Đ</div>
+                      <div class="col-lg-9 col-md-8" th:text="${banphim.getGia()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Hãng sản xuất</div>
-                      <div class="col-lg-9 col-md-8">hyper</div>
+                      <div class="col-lg-9 col-md-8" th:text="${banphim.getHangSX()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Model</div>
-                      <div class="col-lg-9 col-md-8">8gb ĐR4</div>
+                      <div class="col-lg-9 col-md-8" th:text="${banphim.getModel()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Thiết kế</div>
-                      <div class="col-lg-9 col-md-8">066257882258</div>
+                      <div class="col-lg-9 col-md-8" th:text="${banphim.getThietke()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Kết nối</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${banphim.getKetNoi()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Switch</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${banphim.getSwitch()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">KeyCaps</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${banphim.getKeyCaps()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Trọng lượng</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${banphim.getTrongLuong()}"></div>
                     </div>
                   </div>
 

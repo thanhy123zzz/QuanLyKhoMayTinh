@@ -1,11 +1,12 @@
-package com.khomaytinh.quanlykhomaytinh.Service;
+package com.khomaytinh.quanlykhomaytinh.Dao;
 
 import com.khomaytinh.quanlykhomaytinh.Model.Chuot;
+
 
 import java.io.IOException;
 import java.util.List;
 
-public interface ChuotService {
+public interface ChuotDao {
     int insert(Chuot hh) throws IOException;
 
     int update(Chuot hh) throws IOException;
@@ -15,4 +16,5 @@ public interface ChuotService {
     Chuot showDetail(String id);
 
     int delete(String id);
+
 }

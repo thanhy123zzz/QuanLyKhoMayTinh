@@ -13,30 +13,30 @@ import java.util.List;
 @Service
 public class LapTopServiceImp implements LapTopService {
     @Autowired
-    LaptopDao laptopDao;
+    LaptopDao LaptopDao;
     @Override
     public int insert(Laptop a) throws IOException {
-        return laptopDao.insert(a);
+        return LaptopDao.insert(a);
     }
 
     @Override
     public int update(Laptop hh) throws IOException {
-        return laptopDao.update(hh);
+        return LaptopDao.update(hh);
     }
 
     @Override
     public List<Laptop> showList(int limit, int xapsep) {
-        return laptopDao.showList(limit,xapsep);
+        return LaptopDao.showList(limit,xapsep);
     }
 
     @Override
     public Laptop showDetail(String id) {
-        return laptopDao.showDetail(id);
+        return LaptopDao.showDetail(id);
     }
 
     @Override
     public int delete(String id) {
-        return laptopDao.delete(id);
+        return LaptopDao.delete(id);
     }
 
     @Override

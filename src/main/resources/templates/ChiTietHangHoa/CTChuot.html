@@ -30,9 +30,9 @@
               <div class="card-body pt-4 d-flex flex-column align-items-center">
                 <img
                   style="width: 300px; height: 250px"
-                  src="assets/img/product-5.jpg"
+                 th:src="@{${'/hang-hoa/anh-chuot/'+chuot.getID()}}"
                 />
-                <h2>Tai nghe hyperX</h2>
+                <h2 th:text="${chuot.getTen()}"></h2>
               </div>
             </div>
           </div>
@@ -61,44 +61,41 @@
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Giá</div>
-                      <div class="col-lg-9 col-md-8">2000000Đ</div>
+                      <div class="col-lg-9 col-md-8 "  th:text="${chuot.getGia()}+'VNĐ'"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Hãng sản xuất</div>
-                      <div class="col-lg-9 col-md-8">hyper</div>
+                      <div class="col-lg-9 col-md-8" th:text="${chuot.getHangSX()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Model</div>
-                      <div class="col-lg-9 col-md-8">8gb ĐR4</div>
+                      <div class="col-lg-9 col-md-8" th:text="${chuot.getModel}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Số nút</div>
-                      <div class="col-lg-9 col-md-8">066257882258</div>
+                      <div class="col-lg-9 col-md-8" th:text="${chuot.getSoNut()}"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Led</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${chuot.getLed()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Màu sắc</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${chuot.getMau()}"></div>
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Cảm biến</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${chuot.getCamBien()}"></div>
                     </div>
 
+                    
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Trọng lượng</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
-                    </div>
-                    <div class="row">
-                      <div class="col-lg-3 col-md-4 label">Trọng lượng</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8" th:text="${chuot.getTrongLuong()}"></div>
                     </div>
                   </div>
 
