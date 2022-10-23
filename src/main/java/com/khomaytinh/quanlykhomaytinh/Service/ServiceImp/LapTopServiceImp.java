@@ -41,7 +41,7 @@ public class LapTopServiceImp implements LapTopService {
 
     @Override
     public HangHoa check_id(String id) {
-        return laptopDao.check_id(id);
+        return LaptopDao.check_id(id);
     }
 
 }

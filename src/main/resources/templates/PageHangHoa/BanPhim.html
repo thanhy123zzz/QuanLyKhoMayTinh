@@ -76,19 +76,19 @@
           padding: 15px 20px;
           text-align: center; cursor: pointer" onclick="show_more_ban_phim(this.getAttribute('data-limit'))"><i>Xem thêm</i></a>
         </div>  
-        <div id="addModal" class="modal">
+          <div id="addModal" class="modal" role="dialog">
           <a href="#" class="fade" style="position: fixed;"></a>
           <div class="modal-dialog1" style="width: 680px; margin-left: auto; margin-right: auto;" >
             
               <div class="modal-content">
                
-                  <form th:action="@{/hang-hoa/them-ban-phim}"  method="get" enctype="multipart/form-data">
-                      <div class="modal-header">						
+                  <form th:action="@{/hang-hoa/them-ban-phim}" method="post" enctype="multipart/form-data">
+                      <div class="modal-header">
                           <h4 class="modal-title">Thêm sản phẩm</h4>
                           <a class="close" data-dismiss="modal" href="#">&times;</a>
                       </div>
                       <div class="modal-body">	
-                       <div class="form-group" style="display: flex; ">
+                        <div class="form-group" style="display: flex; ">
                           <div>
                           <label style="margin-bottom: 70px;">Hình ảnh</label>
                           <input name="hinhAnhbit" class="form-control" type="file" id="Fileimage" onchange="chooseFile(this)" accept="image/gif image/png image/jpeg">
@@ -97,13 +97,12 @@
                               <img src="" alt="" width="300px" height="250px" id="image">
                           </div>
                       </div>
-                        <div class="form-group">
+                          <div class="form-group">
                               <label>Mã hàng hoá</label>
                               <input name="ID" type="text" class="form-control" required id="BanPhimID">
                               <div id="maHH" style="display: none" class="message">
                               </div>
                           </div>
-                          
                           <div class="form-group">
                               <label>Tên hàng hóa</label>
                               <input name="Ten" type="text" class="form-control" required>
@@ -125,12 +124,12 @@
                             <input name="Model" class="form-control" required></input>
                           </div> 
                           <div class="form-group">
-                            <label>Thiết kế</label>
-                            <input name="Thietke" class="form-control" required></input>
-                          </div> 
-                          <div class="form-group">
                             <label>Kết nối</label>
                             <input name="KetNoi" class="form-control" required></input>
+                          </div> 
+                          <div class="form-group">
+                            <label>Thiết kế</label>
+                            <input name="Thietke" class="form-control" required></input>
                           </div> 
                           <div class="form-group">
                             <label>Switch</label>
@@ -140,8 +139,7 @@
                             <label>KeyCaps</label>
                             <input name="KeyCaps" class="form-control" required></input>
                           </div>   
-                           
-                                 
+                          
                       </div>
                       <div class="modal-footer">
                   

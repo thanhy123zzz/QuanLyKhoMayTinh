@@ -1,5 +1,6 @@
 package com.khomaytinh.quanlykhomaytinh.Dao;
 
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 import com.khomaytinh.quanlykhomaytinh.Model.Loa;
 
 
@@ -16,5 +17,6 @@ public interface LoaDao {
     Loa showDetail(String id);
 
     int delete(String id);
+    HangHoa check_id(String id);
 
 }

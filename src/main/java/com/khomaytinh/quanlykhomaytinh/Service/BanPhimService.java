@@ -1,7 +1,7 @@
 package com.khomaytinh.quanlykhomaytinh.Service;
 
 import com.khomaytinh.quanlykhomaytinh.Model.BanPhim;
-
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 import com.khomaytinh.quanlykhomaytinh.Model.Laptop;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +18,6 @@ public interface BanPhimService{
     BanPhim showDetail(String id);
 
     int delete(String id);
+    
+    HangHoa check_id(String id);
 }
