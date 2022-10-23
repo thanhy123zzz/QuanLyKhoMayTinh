@@ -162,7 +162,7 @@ public class HangHoaController extends Common{
     }
     @PostMapping("/check_id_ban_phim")
     public ModelAndView check_id_ban_phim(@RequestParam("idBanPhim")String idbanphim){
-        if(BanPhimService.showDetail(idbanphim)==null){
+        if(BanPhimService.check_id(idbanphim)==null){
             mv.setViewName("Fragments/1Vai :: #maHH1");
         }else{
             mv.setViewName("Fragments/1Vai :: #maHH");
@@ -191,15 +191,6 @@ public class HangHoaController extends Common{
     public ModelAndView show_more_chuot(@RequestParam("xs") int xs,@RequestParam("limit") int limit){
         mv.setViewName("PageHangHoa/Chuot :: #listChuot");
         mv.addObject("chuots",ChuotService.showList(limit+6, xs));
-        return mv;
-    }
-    @PostMapping("/check_id_chuot")
-    public ModelAndView check_id_chuot(@RequestParam("idChuot")String idchuot){
-        if(ChuotService.showDetail(idchuot)==null){
-            mv.setViewName("Fragments/1Vai :: #maHH1");
-        }else{
-            mv.setViewName("Fragments/1Vai :: #maHH");
-        }
         return mv;
     }
     @GetMapping("/anh-chuot/{MaHH}")
@@ -241,6 +232,15 @@ public class HangHoaController extends Common{
     public ModelAndView page_chuot_ct(@PathVariable("maHH") String maHH){
         mv.addObject("chuot",ChuotService.showDetail(maHH));
         mv.setViewName("ChiTietHangHoa/CTChuot");
+        return mv;
+    }
+    @PostMapping("/check_id_chuot")
+    public ModelAndView check_id_chuot(@RequestParam("idChuot")String idchuot){
+        if(ChuotService.check_id(idchuot)==null){
+            mv.setViewName("Fragments/1Vai :: #maHH1");
+        }else{
+            mv.setViewName("Fragments/1Vai :: #maHH");
+        }
         return mv;
     }
     //end- controller chuột
@@ -309,7 +309,7 @@ public class HangHoaController extends Common{
     }
     @PostMapping("/check_id_loa")
     public ModelAndView check_id_loa(@RequestParam("idLoa")String idloa){
-        if(LoaService.showDetail(idloa)==null){
+        if(LoaService.check_id(idloa)==null){
             mv.setViewName("Fragments/1Vai :: #maHH1");
         }else{
             mv.setViewName("Fragments/1Vai :: #maHH");
@@ -382,7 +382,7 @@ public class HangHoaController extends Common{
     }
     @PostMapping("/check_id_man_hinh")
     public ModelAndView check_id_man_hinh(@RequestParam("idManHinh")String idmanhinh){
-        if(ManHinhService.showDetail(idmanhinh)==null){
+        if(ManHinhService.check_id(idmanhinh)==null){
             mv.setViewName("Fragments/1Vai :: #maHH1");
         }else{
             mv.setViewName("Fragments/1Vai :: #maHH");
@@ -455,7 +455,7 @@ public class HangHoaController extends Common{
     }
     @PostMapping("/check_id_pc")
     public ModelAndView check_id_pc(@RequestParam("idPC")String idpc){
-        if(PcService.showDetail(idpc)==null){
+        if(PcService.check_id(idpc)==null){
             mv.setViewName("Fragments/1Vai :: #maHH1");
         }else{
             mv.setViewName("Fragments/1Vai :: #maHH");
@@ -528,7 +528,7 @@ public class HangHoaController extends Common{
     }
     @PostMapping("/check_id_tai_nghe")
     public ModelAndView check_id_tai_nghe(@RequestParam("idTaiNghe")String idtainghe){
-        if(TaiNgheService.showDetail(idtainghe)==null){
+        if(TaiNgheService.check_id(idtainghe)==null){
             mv.setViewName("Fragments/1Vai :: #maHH1");
         }else{
             mv.setViewName("Fragments/1Vai :: #maHH");

@@ -10,7 +10,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.khomaytinh.quanlykhomaytinh.Model.BanPhim;
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 import com.khomaytinh.quanlykhomaytinh.Model.Mapper.BanPhimMapper;
+import com.khomaytinh.quanlykhomaytinh.Model.Mapper.HangHoaMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Repository
@@ -79,5 +82,12 @@ public class BanphimDaolmp implements BanphimDao {
 	        int kq = jdbcTemplate.update(query2);
 	        kq+= jdbcTemplate.update(query);
 	        return kq;
+	    }
+	    @Override
+	    public HangHoa check_id(String id) {
+	        String query = "select*from hanghoa where MAHH = '"+id+"'";
+	        if(jdbcTemplate.query(query,new HangHoaMapper()).size()==0)
+	            return null;
+	        else return jdbcTemplate.query(query,new HangHoaMapper()).get(0);
 	    }
 }

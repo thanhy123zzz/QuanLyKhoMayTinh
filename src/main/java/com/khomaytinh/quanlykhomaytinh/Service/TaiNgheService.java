@@ -1,5 +1,6 @@
 package com.khomaytinh.quanlykhomaytinh.Service;
 
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 import com.khomaytinh.quanlykhomaytinh.Model.TaiNghe;
 
 
@@ -17,4 +18,5 @@ public interface TaiNgheService {
     TaiNghe showDetail(String id);
 
     int delete(String id);
+    HangHoa check_id(String id);
 }

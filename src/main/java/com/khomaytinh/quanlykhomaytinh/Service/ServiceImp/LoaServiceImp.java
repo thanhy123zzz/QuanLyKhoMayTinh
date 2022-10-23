@@ -1,7 +1,7 @@
 package com.khomaytinh.quanlykhomaytinh.Service.ServiceImp;
 
 import com.khomaytinh.quanlykhomaytinh.Dao.LoaDao;
-
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 import com.khomaytinh.quanlykhomaytinh.Model.Loa;
 import com.khomaytinh.quanlykhomaytinh.Service.LoaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +37,9 @@ public class LoaServiceImp implements LoaService {
     @Override
     public int delete(String id) {
         return LoaDao.delete(id);
+    }
+    @Override
+    public HangHoa check_id(String id) {
+        return LoaDao.check_id(id);
     }
 }

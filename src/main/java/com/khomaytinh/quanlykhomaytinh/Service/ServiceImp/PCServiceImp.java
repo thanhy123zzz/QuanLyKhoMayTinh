@@ -2,6 +2,7 @@ package com.khomaytinh.quanlykhomaytinh.Service.ServiceImp;
 
 
 import com.khomaytinh.quanlykhomaytinh.Dao.PCDao;
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 import com.khomaytinh.quanlykhomaytinh.Model.PC;
 import com.khomaytinh.quanlykhomaytinh.Service.PcService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,9 @@ public class PCServiceImp implements PcService {
     @Override
     public int delete(String id) {
         return PCDao.delete(id);
+    }
+    @Override
+    public HangHoa check_id(String id) {
+        return PCDao.check_id(id);
     }
 }

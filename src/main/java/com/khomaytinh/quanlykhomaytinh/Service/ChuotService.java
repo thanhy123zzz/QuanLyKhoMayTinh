@@ -1,6 +1,7 @@
 package com.khomaytinh.quanlykhomaytinh.Service;
 
 import com.khomaytinh.quanlykhomaytinh.Model.Chuot;
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,4 +16,5 @@ public interface ChuotService {
     Chuot showDetail(String id);
 
     int delete(String id);
+    HangHoa check_id(String id);
 }

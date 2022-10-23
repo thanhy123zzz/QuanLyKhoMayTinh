@@ -1,7 +1,7 @@
 package com.khomaytinh.quanlykhomaytinh.Service.ServiceImp;
 
 import com.khomaytinh.quanlykhomaytinh.Dao.TaiNgheDao;
-
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 import com.khomaytinh.quanlykhomaytinh.Model.TaiNghe;
 import com.khomaytinh.quanlykhomaytinh.Service.TaiNgheService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +37,9 @@ public class TaiNgheServiceImp implements TaiNgheService {
     @Override
     public int delete(String id) {
         return TaiNgheDao.delete(id);
+    }
+    @Override
+    public HangHoa check_id(String id) {
+        return TaiNgheDao.check_id(id);
     }
 }

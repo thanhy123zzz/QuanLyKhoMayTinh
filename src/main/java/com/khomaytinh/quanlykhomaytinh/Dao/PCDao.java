@@ -1,5 +1,6 @@
 package com.khomaytinh.quanlykhomaytinh.Dao;
 
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 import com.khomaytinh.quanlykhomaytinh.Model.PC;
 
 
@@ -17,5 +18,6 @@ public interface PCDao {
     PC showDetail(String id);
 
     int delete(String id);
+    HangHoa check_id(String id);
 
 }

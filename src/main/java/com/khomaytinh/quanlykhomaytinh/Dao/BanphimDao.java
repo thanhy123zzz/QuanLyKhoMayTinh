@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.khomaytinh.quanlykhomaytinh.Model.BanPhim;
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 
 public interface BanphimDao {
 	int insert(BanPhim hh) throws IOException;
@@ -17,5 +18,7 @@ public interface BanphimDao {
     BanPhim showDetail(String id);
 
     int delete(String id);
+    
+    HangHoa check_id(String id);
 
 }

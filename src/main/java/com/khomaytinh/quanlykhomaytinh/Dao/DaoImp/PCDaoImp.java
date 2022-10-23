@@ -1,8 +1,9 @@
 package com.khomaytinh.quanlykhomaytinh.Dao.DaoImp;
 
 import com.khomaytinh.quanlykhomaytinh.Dao.PCDao;
-
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 import com.khomaytinh.quanlykhomaytinh.Model.PC;
+import com.khomaytinh.quanlykhomaytinh.Model.Mapper.HangHoaMapper;
 import com.khomaytinh.quanlykhomaytinh.Model.Mapper.PCMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -77,6 +78,13 @@ public class PCDaoImp implements PCDao {
         int kq = jdbcTemplate.update(query2);
         kq+= jdbcTemplate.update(query);
         return kq;
+    }
+    @Override
+    public HangHoa check_id(String id) {
+        String query = "select*from hanghoa where MAHH = '"+id+"'";
+        if(jdbcTemplate.query(query,new HangHoaMapper()).size()==0)
+            return null;
+        else return jdbcTemplate.query(query,new HangHoaMapper()).get(0);
     }
 }
 

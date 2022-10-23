@@ -1,7 +1,7 @@
 package com.khomaytinh.quanlykhomaytinh.Service.ServiceImp;
 
 import com.khomaytinh.quanlykhomaytinh.Dao.ManHinhDao;
-
+import com.khomaytinh.quanlykhomaytinh.Model.HangHoa;
 import com.khomaytinh.quanlykhomaytinh.Model.ManHinh;
 import com.khomaytinh.quanlykhomaytinh.Service.ManHinhService;
 import com.khomaytinh.quanlykhomaytinh.Service.ManHinhService;
@@ -38,5 +38,9 @@ public class ManHinhServiceImp implements ManHinhService {
     @Override
     public int delete(String id) {
         return ManHinhDao.delete(id);
+    }
+    @Override
+    public HangHoa check_id(String id) {
+        return ManHinhDao.check_id(id);
     }
 }
