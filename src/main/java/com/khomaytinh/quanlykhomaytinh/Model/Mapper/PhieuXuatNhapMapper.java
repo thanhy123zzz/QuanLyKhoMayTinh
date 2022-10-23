@@ -11,7 +11,7 @@ public class PhieuXuatNhapMapper implements RowMapper<PhieuXuatNhap> {
     @Override
     public PhieuXuatNhap mapRow(ResultSet rs, int rowNum) throws SQLException {
         PhieuXuatNhap p = new PhieuXuatNhap();
-        p.setMaPhieu(rs.getInt("MaPhieu"));
+        p.setMaPhieu(rs.getString("MaPhieu"));
         p.setLoai(rs.getString("Loai"));
         p.setNgayXP(rs.getDate("NgayXN"));
         p.setSoLoaiSP(rs.getInt("SLLoaiSP"));
