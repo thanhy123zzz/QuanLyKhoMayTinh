@@ -35,7 +35,8 @@ public class AccountImp implements AccountDao {
 
     @Override
     public int updateAccount(Accounts accounts) {
-        return 0;
+        String query = "update account set password =? where UserName = ?";
+        return jdbcTemplate.update(query, new Object[]{accounts.getPassword(),accounts.getUserName()});
     }
 
     @Override

@@ -14,7 +14,7 @@ public class AdminMapper implements RowMapper<Admin> {
         ad.setID(rs.getString("MaQL"));
         ad.setGioiTinh(rs.getBoolean("GioiTinh"));
         ad.setTen(rs.getString("TenQL"));
-        ad.setCCCD(rs.getString("SDT"));
+        ad.setSoDT(rs.getString("SDT"));
         ad.setNgaySinh(rs.getDate("NgaySinh"));
         ad.setCCCD(rs.getString("CCCD"));
         ad.setTaiKhoan(new Accounts(rs.getString("UserName")));

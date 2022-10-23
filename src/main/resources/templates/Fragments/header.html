@@ -45,23 +45,16 @@
             <!-- End Messages Nav -->
 
             <li class="nav-item dropdown pe-3">
-                <a
-                        class="nav-link nav-profile d-flex align-items-center pe-0"
-                        href="#"
-                        data-bs-toggle="dropdown"
-                >
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <img src="" class="bi bi-person" />
-                    <span class="d-none d-md-block dropdown-toggle ps-2"
-                    >Chào mừng bạn</span
-                    > </a
-                ><!-- End Profile Iamge Icon -->
-
+                    <span class="d-none d-md-block dropdown-toggle ps-2" th:text="${session.admin.getTen()}"></span> </a><!-- End Profile Iamge Icon -->
                 <ul
                         class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
                 >
                     <li class="dropdown-header">
-                        <h6>Nguyễn Thanh Ý</h6>
-                        <span>Develop</span>
+                        <h6 th:text="${session.admin.getTen()}"></h6>
+                        <span th:text="${session.admin.getTaiKhoan().getRole().getMaRL()}"></span>
+                        <span th:text="${session.admin.getTaiKhoan().getUserName()}" style="display: none" id="SSuserName"></span>
                     </li>
                     <li>
                         <hr class="dropdown-divider" />

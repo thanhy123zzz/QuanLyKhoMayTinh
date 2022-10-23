@@ -3,6 +3,7 @@
       layout:decorate="~{layout.html}">
   <head>
     <title>Hàng hóa / Loa</title>
+      <link href="/assets/css/Modal.css" rel="stylesheet" />
   </head>
 
   <body layout:fragment="content">
@@ -11,7 +12,7 @@
         <h1>Loa</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../index.html">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/thong-ke}">Trang chủ</a></li>
             <li class="breadcrumb-item">Hàng hóa</li>
             <li class="breadcrumb-item active">Loa</li>
           </ol>
@@ -21,42 +22,47 @@
 
       <section class="section">
         <div
-          style="margin-bottom: 20px; display: flex; justify-content: flex-end"
-        >
-          <a href="#addModal" class="btn btn-success">
-            <span>Thêm Sản Phẩm</span></a
+                  style="margin-bottom: 20px; display: flex; justify-content: space-between"
           >
-        </div>
-        <div class="product" style="display: flex; flex-wrap: wrap">
+              <a  class="btn btn-success" href="#addModal">
+                  <span>Thêm Sản Phẩm</span></a
+              >
+              <div >
+                  <div class="dropdown" >
+                      <select
+                              class="form-select"
+                              aria-label="Default select example" id="xapSep" onchange="xapSepLoa()">
+                          <option selected disabled>Sắp xếp theo</option>
+                          <option value="1">Giá: Thấp đến cao</option>
+                          <option value="2">Giá: Cao đến thấp</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+        <div id="listLoa" class="product" style="display: flex; flex-wrap: wrap">
         
-          <ul>
+         <ul th:each="loa : ${loas}">
             <div class="card">
               <div
                 class="profile-card pt-4 d-flex flex-column"
-                style="padding: 0 10px 0 10px"
-              >
-                <img
-                  style="width: 300px; height: 250px"
-                  src="/assets/img/product-5.jpg"
-                />
-                <h5 style="margin-top: 10px">Tai nghe hiperx</h5>
-            
-                <h6>Giá: 12000000đ</h6>
+                style="padding: 0 10px 0 10px">
+                <img style="width: 300px; height: 250px"
+                  th:src="@{${'/hang-hoa/anh-loa/'+loa.getID()}}"/>
+                  <p id="idLoa" style="display: none" th:text="${loa.getID()}"></p>
+                <h5 style="margin-top: 10px; width: 300px; height: 45px;" th:text="${loa.getTen()}"></h5>
+                <h6 th:text="'Giá: '+${loa.getGia()}"></h6>
                 <div style="display: flex; justify-content: space-between">
-                <h6>Còn: 40</h6>
-                <label for="" style="display: none;"> hết hàng</label>
+                <h6 th:if="${loa.getSoLuongCon()!=0}" th:text="'Còn: '+${loa.getSoLuongCon()}"></h6>
+                <label th:unless="${loa.getSoLuongCon()!=0}" for="" style="display: block; color: red"> hết hàng</label>
                 </div>
-                <div
-                  class="social-links"
-                  style="display: flex; justify-content: space-between"
-                >
+                <div class="social-links" style="display: flex; justify-content: space-between">
                   <div>
-                    <a href="#editModal" class="chinhsua"
-                      ><i class="bi bi-pencil-square"></i
+                    <a  class="chinhsua" href="#editModal" th:data-parameter1 ="${loa.getID()}" onclick="show_loa_on_modal(this.getAttribute('data-parameter1'))"><i class="bi bi-pencil-square"></i
+
                     ></a>
-                    <a href="#" class="Xoa"><i class="bi bi-trash"></i></a>
+                     <a class="Xoa" th:data-parameter1 ="${loa.getID()}" onclick="xoa_loa(this.getAttribute('data-parameter1'))"><i class="bi bi-trash"></i></a>
                   </div>
-                  <a href="../ChiTietHangHoa/CTLap.html" class="chitiet"><i class="=">Chi tiết</i></a>
+                  <a th:href="@{${'/hang-hoa/loa-ct/'+loa.getID()}}" class="chitiet"><i class="=">Chi tiết</i></a>
                 </div>
               </div>
             </div>
@@ -64,19 +70,19 @@
      
         </div>
         <div >
-          <a href="" style="          
+          <a th:data-limit="${loas.size()}" style="        
           display: block;           
           margin: 5px auto 15px;
           padding: 15px 20px;
-          text-align: center;" ><i>Xem thêm>>></i></a>
+          text-align: center; cursor: pointer" onclick="show_more_loa(this.getAttribute('data-limit'))"><i>Xem thêm</i></a>
         </div>  
-        <div id="addModal" class="modal">
+        <div id="addModal" class="modal" role="dialog">
           <a href="#" class="fade" style="position: fixed;"></a>
           <div class="modal-dialog1" style="width: 680px; margin-left: auto; margin-right: auto;" >
             
               <div class="modal-content">
                
-                  <form action="" method="get">
+                  <form th:action="@{/hang-hoa/them-loa}" method="post" enctype="multipart/form-data">
                       <div class="modal-header">						
                           <h4 class="modal-title">Thêm sản phẩm</h4>
                           <a class="close" data-dismiss="modal" href="#">&times;</a>
@@ -85,48 +91,53 @@
                         <div class="form-group" style="display: flex; ">
                           <div>
                           <label style="margin-bottom: 70px;">Hình ảnh</label>
-                          <input name="hinhanh" class="form-control" type="file" id="Fileimage" onchange="chooseFile(this)" accept="image/gif image/png image/jpeg">
+                          <input name="hinhAnhbit" class="form-control" type="file" id="Fileimage" onchange="chooseFile(this)" accept="image/gif image/png image/jpeg">
                           </div>
                           <div style="max-width: 300px; max-height:250px; margin-left: 10px;">
                               <img src="" alt="" width="300px" height="250px" id="image">
                           </div>
-                        </div>	
-                          
+                      </div>
+                          <div class="form-group">
+                              <label>Mã hàng hoá</label>
+                              <input name="ID" type="text" class="form-control" required id="LoaID">
+                              <div id="maHH" style="display: none" class="message">
+                              </div>
+                          </div>
                           <div class="form-group">
                               <label>Tên hàng hóa</label>
-                              <input name="name" type="text" class="form-control" required>
+                              <input name="Ten" type="text" class="form-control" required>
                           </div>
                           <div class="form-group">
                               <label>Hãng sản xuất</label>
-                              <input name="type" type="text" class="form-control" required>
+                              <input name="hangSX" type="text" class="form-control" required>
                           </div>
                           <div class="form-group">
                               <label>Giá</label>
-                              <input name="price" class="form-control" required></input>
+                              <input name="gia" class="form-control" required></input>
                           </div>
                           <div class="form-group">
                               <label>Trọng lượng</label>
-                              <input name="image" class="form-control" required></input>
+                              <input name="trongLuong" class="form-control" required></input>
                           </div>  
                           <div class="form-group">
                             <label>Model</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="Model" class="form-control" required></input>
                           </div> 
                           <div class="form-group">
                             <label>Kết nối</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name=KetNoi class="form-control" required></input>
                           </div> 
                           <div class="form-group">
                             <label>Dáng loa</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="DangLoa" class="form-control" required></input>
                           </div> 
                           <div class="form-group">
                             <label>Kiểu loa</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="KieuLoa" class="form-control" required></input>
                           </div>   
                           <div class="form-group">
                             <label>Số lượng còn</label>
-                            <input name="image" class="form-control" required></input>
+                            <input name="soLuongCon" class="form-control" required></input>
                           </div>         
                       </div>
                       <div class="modal-footer">
@@ -141,9 +152,9 @@
         <a href="#" class="fade" style="position: fixed;"></a>
         <div class="modal-dialog1" style="width: 680px; margin-left: auto; margin-right: auto;" >
           
-            <div class="modal-content">
+            <div id="modalSua" class="modal-content">
              
-                <form action="" method="get">
+               <form th:action="@{/hang-hoa/sua-loa}" method="post" enctype="multipart/form-data">
                     <div class="modal-header">						
                         <h4 class="modal-title">Chỉnh sửa thông tin</h4>
                         <a class="close" data-dismiss="modal" href="#">&times;</a>
@@ -152,52 +163,52 @@
                       <div class="form-group" style="display: flex; ">
                         <div>
                         <label style="margin-bottom: 70px;">Hình ảnh</label>
-                        <input name="hinhanh" class="form-control" type="file" id="Fileimage" onchange="chooseFile(this)" accept="image/gif image/png image/jpeg">
+                        <input name="hinhAnhbit" class="form-control" type="file" id="Fileimage" onchange="chooseFile1(this)" accept="image/gif image/png image/jpeg">
                         </div>
-                        <div style="max-width: 300px; max-height:250px; margin-left: 10px;">
-                            <img src="" alt="" width="300px" height="250px" id="image">
+                          <div id="divImage" style="max-width: 300px; max-height:250px; margin-left: 10px;">
+                              <img th:src="@{${'/hang-hoa/anh-loa/'+loa.getID()}}" alt="" width="300px" height="250px">
+                          </div>
+                        <div id="divImage1" style="max-width: 300px; max-height:250px; margin-left: 10px; display: none">
+                            <img src="" alt="" width="300px" height="250px" id="image1">
                         </div>
-                      </div>		
+                      </div>			
                         <div class="form-group">
                             <label>Mã Hàng hóa</label>
-                            <input name="id" type="text" class="form-control" required disabled>
+                            <input name="ID" th:value="${loa.getID()}" type="text" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                             <label>Tên hàng hóa</label>
-                            <input name="name" type="text" class="form-control" required>
+                            <input name="Ten" th:value="${loa.getTen()}" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Hãng sản xuất</label>
-                            <input name="type" type="text" class="form-control" required>
+                            <input name="hangSX" th:value="${loa.getHangSX()}" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Giá</label>
-                            <input name="price" class="form-control" required></input>
+                            <input name="gia" th:value="${loa.getGia()}" class="form-control" required></input>
                         </div>
                         <div class="form-group">
                             <label>Trọng lượng</label>
-                            <input name="image" class="form-control" required></input>
-                        </div>  
+                            <input name="trongLuong" th:value="${loa.getTrongLuong()}" class="form-control" required></input>
+                        </div> 
                         <div class="form-group">
                           <label>Model</label>
-                          <input name="image" class="form-control" required></input>
+                          <input name="Model" th:value="${loa.getModel()}" class="form-control" required></input>
                         </div> 
                         <div class="form-group">
                           <label>Kết nối</label>
-                          <input name="image" class="form-control" required></input>
+                          <input name="KetNoi" th:value="${loa.getKetNoi()}" class="form-control" required></input>
                         </div> 
                         <div class="form-group">
                           <label>Dáng loa</label>
-                          <input name="image" class="form-control" required></input>
+                          <input name="DangLoa" th:value="${loa.getDangLoa()}"  class="form-control" required></input>
                         </div> 
                         <div class="form-group">
                           <label>Kiểu loa</label>
-                          <input name="image" class="form-control" required></input>
+                          <input name="KieuLoa" th:value="${loa.getKieuLoa()}" class="form-control" required></input>
                         </div> 
-                        <div class="form-group">
-                          <label>Số lượng còn</label>
-                          <input name="image" class="form-control" required></input>
-                        </div>   
+                          
                                  
                     </div>
                     <div class="modal-footer">

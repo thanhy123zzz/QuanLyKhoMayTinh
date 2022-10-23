@@ -10,8 +10,8 @@ public class LapTopMapper implements RowMapper<Laptop> {
     @Override
     public Laptop mapRow(ResultSet rs, int rowNum) throws SQLException {
         Laptop hh = new Laptop();
-        hh.setID(rs.getInt("MAHH"));
-        hh.setTen(rs.getString("TenHH"));
+        hh.setID(rs.getString("MAHH"));
+        hh.setTen(rs.getString("Ten"));
         hh.setHangSX(rs.getString("HangSX"));
         hh.setGia(rs.getDouble("Gia"));
         hh.setHinhAnh(rs.getBlob("HinhAnh"));
