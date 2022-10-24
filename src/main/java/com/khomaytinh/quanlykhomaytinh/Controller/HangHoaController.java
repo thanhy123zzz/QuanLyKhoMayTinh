@@ -1,14 +1,11 @@
 package com.khomaytinh.quanlykhomaytinh.Controller;
 
-import com.khomaytinh.quanlykhomaytinh.Model.BanPhim;
-import com.khomaytinh.quanlykhomaytinh.Model.Chuot;
-import com.khomaytinh.quanlykhomaytinh.Model.Laptop;
-import com.khomaytinh.quanlykhomaytinh.Model.Loa;
-import com.khomaytinh.quanlykhomaytinh.Model.ManHinh;
-import com.khomaytinh.quanlykhomaytinh.Model.PC;
-import com.khomaytinh.quanlykhomaytinh.Model.TaiNghe;
+import com.khomaytinh.quanlykhomaytinh.Model.*;
 
+import com.khomaytinh.quanlykhomaytinh.Model.Mapper.HangHoaMapper;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +17,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Objects;
 
 @RequestMapping("/hang-hoa")
 @Controller
 public class HangHoaController extends Common{
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+    @PostMapping("/tim-kiem")
+    public ModelAndView tim_kiem(@RequestParam("key")String key){
+        List<HangHoa> list;
+        String query = "select*from hanghoa where concat_ws(' ',MAHH,Ten,HangSX,Gia) like '%"+key+"%'";
+        list = jdbcTemplate.query(query,new HangHoaMapper());
+        mv.addObject("hangHoas",list);
+        mv.setViewName("Timkiem");
+        return mv;
+    }
+
     //Controller cho laptop
     @GetMapping("/laptop")
     public ModelAndView page_laptop(){
