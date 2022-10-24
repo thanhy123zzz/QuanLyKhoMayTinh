@@ -44,8 +44,8 @@ public class PersonDaoImp implements PersonDao {
                 "(`username`, `password`, `marl`) VALUES (?,?,?);";
         int kq1= jdbcTemplate.update(querytk,new Object[]{tk.getTaiKhoan().getUserName(),tk.getTaiKhoan().getPassword(),tk.getTaiKhoan().getRole().getMaRL()});
 
-        String querytk1 = "insert into thukho(`matk`,`username`) values(?,?)";
-        int kq2 = jdbcTemplate.update(querytk1,new Object[]{tk.getID(),tk.getTaiKhoan().getUserName()});
+        String querytk1 = "insert into thukho(`matk`,`username`,`ngaybatdau`,`sotientrengio`) values(?,?,?,?)";
+        int kq2 = jdbcTemplate.update(querytk1,new Object[]{tk.getID(),tk.getTaiKhoan().getUserName(),tk.getNgayBatDauLam(),tk.getSoTienTrenGio()});
         return kq1+kq2;
         
     }
