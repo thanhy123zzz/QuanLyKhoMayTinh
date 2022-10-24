@@ -2,8 +2,11 @@ package com.khomaytinh.quanlykhomaytinh.Model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class ThuKho extends Admin{
     private Double soTienTrenGio;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngayBatDauLam;
     private Double luong;
 

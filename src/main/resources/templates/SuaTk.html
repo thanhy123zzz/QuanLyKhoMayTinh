@@ -40,6 +40,10 @@
                                     <input name="user" type="text" class="form-control" required th:value="${thukho.getTaiKhoan().getUserName()}">
                                 </div>
                                 <div class="form-group">
+                                    <label>Ngày bắt đầu làm</label>
+                                    <input name="" class="form-control" required th:value="${thukho.getNgayBatDauLam()}"></input>
+                                </div>
+                                <div class="form-group">
                                     <label>Tiền lương theo giờ</label>
                                     <input name="soTienTrenGio" class="form-control" required th:value="${thukho.getSoTienTrenGio()}"></input>
                                 </div>
