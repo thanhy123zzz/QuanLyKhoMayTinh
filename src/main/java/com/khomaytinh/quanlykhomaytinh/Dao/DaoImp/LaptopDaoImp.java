@@ -86,5 +86,7 @@ public class LaptopDaoImp implements LaptopDao {
         kq+= jdbcTemplate.update(query);
         return kq;
     }
+
+
 }
 

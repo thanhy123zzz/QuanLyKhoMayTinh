@@ -28,6 +28,7 @@ public class XuatNhapController extends Common{
         mv.setViewName("XuatNhap/TaoDonXN");
         mv.addObject("hhs",xuatNhapServiec.load_List_HH("nhap"));
         session.setAttribute("listHHcuaPhieu",list);
+        session.setAttribute("loai","nhap");
         return mv;
     }
     @PostMapping("/load_HH")
