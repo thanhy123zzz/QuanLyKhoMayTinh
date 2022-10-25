@@ -43,7 +43,7 @@ public class LoaDaolmp implements LoaDao {
                     hh.getSoLuongCon(), hh.getID()});
         }
 
-        String queryLap = "update Loa set HeDieuHanh=?,WebCam=?,Ram=?,GPU=?,CPU=?,CARD=?,Pin=? where MaHH =?";
+        String queryLap = "update Loa set model=?,ketnoi=?,dangloa=?,kieuloa=? where MaHH =?";
         int kq2= jdbcTemplate.update(queryLap,new Object[]{hh.getModel(),hh.getKetNoi(),hh.getDangLoa(),hh.getKieuLoa(),hh.getID()});
         return kq1+kq2;
     }
