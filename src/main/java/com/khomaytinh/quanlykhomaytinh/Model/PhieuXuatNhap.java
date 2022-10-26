@@ -11,7 +11,7 @@ public class PhieuXuatNhap {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngayXP;
     private int SoLoaiSP;
-    private Double tongTienCaPhieu;
+    private long tongTienCaPhieu;
     private boolean trangThai;
     private Accounts accounts;
     private List<ChiTietPhieu> chiTietPhieus;
@@ -48,11 +48,11 @@ public class PhieuXuatNhap {
         SoLoaiSP = soLoaiSP;
     }
 
-    public Double getTongTienCaPhieu() {
+    public long getTongTienCaPhieu() {
         return tongTienCaPhieu;
     }
 
-    public void setTongTienCaPhieu(Double tongTienCaPhieu) {
+    public void setTongTienCaPhieu(long tongTienCaPhieu) {
         this.tongTienCaPhieu = tongTienCaPhieu;
     }
 

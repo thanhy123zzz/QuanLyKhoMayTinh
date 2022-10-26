@@ -15,7 +15,7 @@ public class PhieuXuatNhapMapper implements RowMapper<PhieuXuatNhap> {
         p.setLoai(rs.getString("Loai"));
         p.setNgayXP(rs.getDate("NgayXN"));
         p.setSoLoaiSP(rs.getInt("SLLoaiSP"));
-        p.setTongTienCaPhieu(rs.getDouble("TongTienCaPhieu"));
+        p.setTongTienCaPhieu((long)rs.getDouble("TongTienCaPhieu"));
         p.setTrangThai(rs.getBoolean("TrangThai"));
         p.setAccounts(new Accounts(rs.getString("UserName")));
         return p;

@@ -11,10 +11,10 @@ public class ChiTiecPhieuMapper implements RowMapper<ChiTietPhieu> {
     @Override
     public ChiTietPhieu mapRow(ResultSet rs, int rowNum) throws SQLException {
         ChiTietPhieu c = new ChiTietPhieu();
-        c.setDonGia(rs.getDouble("DonGia"));
+        c.setDonGia((long)rs.getDouble("DonGia"));
         c.setHangHoa(new HangHoa(rs.getString("MaHH")));
         c.setSoLuong(rs.getInt("SoLuong"));
-        c.setThanhTien(rs.getDouble("ThanhTien"));
+        c.setThanhTien((long)rs.getDouble("ThanhTien"));
         return c;
     }
 }

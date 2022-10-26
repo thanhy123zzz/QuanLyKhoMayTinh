@@ -844,6 +844,19 @@ function show_more_ban_phim(limit){
       }
     });
   }
+  function changeThongKe(key){
+    $.ajax({
+      type: "POST",
+      url: "/thong-ke/change-thong-ke",
+      data: "key="+key,
+      success: function (data) {
+        $('#thongKeTable').replaceWith(data);
+      },
+      error: function (data) {
+        alert('Lỗi!');
+      }
+    });
+  }
 </script>
 </body>
 </html>

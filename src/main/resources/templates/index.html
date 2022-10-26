@@ -138,15 +138,14 @@
                         <h6>Thống kê</h6>
                       </li>
 
-                      <li><a class="dropdown-item" href="#">Theo ngày</a></li>
-                      <li><a class="dropdown-item" href="#">Theo tháng</a></li>
-                      <li><a class="dropdown-item" href="#">Theo năm</a></li>
+                      <li onclick="changeThongKe(1)"><a class="dropdown-item">Theo ngày</a></li>
+                      <li onclick="changeThongKe(2)"><a class="dropdown-item" href="#">Theo tháng</a></li>
                     </ul>
                   </div>
 
                   <div class="card-body pb-0">
                     <h5 class="card-title">
-                      Sản phẩm nhập nhiều <span>| Trong tuần</span>
+                      Sản phẩm nhập nhiều
                     </h5>
 
                     <table class="table table-borderless">
@@ -159,81 +158,22 @@
                           <th scope="col">Thành tiền</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
+                      <tbody id="thongKeTable">
+                        <tr th:each="tk : ${thongKe}">
                           <th scope="row">
                             <a href="#"
-                              ><img src="assets/img/product-1.jpg" alt=""
+                              ><img th:src="@{${'/xuat-nhap/anh/'+tk.getHangHoah().getID()}}"
+                                    alt=""
+                                    width="60px"
+                                    height="60px"
                             /></a>
                           </th>
                           <td>
-                            <a href="#" class="text-primary fw-bold"
-                              >Ut inventore ipsa voluptas nulla</a
-                            >
+                            <a href="#" class="text-primary fw-bold" th:text="${tk.getHangHoah().getTen()}"></a>
                           </td>
-                          <td>$64</td>
-                          <td class="fw-bold">124</td>
-                          <td>$5,828</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">
-                            <a href="#"
-                              ><img src="assets/img/product-2.jpg" alt=""
-                            /></a>
-                          </th>
-                          <td>
-                            <a href="#" class="text-primary fw-bold"
-                              >Exercitationem similique doloremque</a
-                            >
-                          </td>
-                          <td>$46</td>
-                          <td class="fw-bold">98</td>
-                          <td>$4,508</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">
-                            <a href="#"
-                              ><img src="assets/img/product-3.jpg" alt=""
-                            /></a>
-                          </th>
-                          <td>
-                            <a href="#" class="text-primary fw-bold"
-                              >Doloribus nisi exercitationem</a
-                            >
-                          </td>
-                          <td>$59</td>
-                          <td class="fw-bold">74</td>
-                          <td>$4,366</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">
-                            <a href="#"
-                              ><img src="assets/img/product-4.jpg" alt=""
-                            /></a>
-                          </th>
-                          <td>
-                            <a href="#" class="text-primary fw-bold"
-                              >Officiis quaerat sint rerum error</a
-                            >
-                          </td>
-                          <td>$32</td>
-                          <td class="fw-bold">63</td>
-                          <td>$2,016</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">
-                            <a href="#"
-                              ><img src="assets/img/product-5.jpg" alt=""
-                            /></a>
-                          </th>
-                          <td>
-                            <a href="#" class="text-primary fw-bold"
-                              >Sit unde debitis delectus repellendus</a
-                            >
-                          </td>
-                          <td>$79</td>
-                          <td class="fw-bold">41</td>
-                          <td>$3,239</td>
+                          <td th:text="${tk.getChiTietPhieu().getSoLuong()}" ></td>
+                          <td class="fw-bold" th:text="${tk.getChiTietPhieu().getDonGia()}"></td>
+                          <td th:text="${tk.getChiTietPhieu().getThanhTien()}"></td>
                         </tr>
                       </tbody>
                     </table>
@@ -258,9 +198,8 @@
                     <h6>Thống kê</h6>
                   </li>
 
-                  <li><a class="dropdown-item" href="#">Theo ngày</a></li>
-                  <li><a class="dropdown-item" href="#">Theo tháng</a></li>
-                  <li><a class="dropdown-item" href="#">Theo năm</a></li>
+                  <li onclick="changeThongKe(1)"><a class="dropdown-item">Theo ngày</a></li>
+                  <li onclick="changeThongKe(2)"><a class="dropdown-item" href="#">Theo tháng</a></li>
                 </ul>
               </div>
 
