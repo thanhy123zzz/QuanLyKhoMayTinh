@@ -44,7 +44,7 @@ public class ManHinhDaolmp implements ManHinhDao {
                     hh.getSoLuongCon(), hh.getID()});
         }
 
-        String queryLap = "update ManHinh set HeDieuHanh=?,WebCam=?,Ram=?,GPU=?,CPU=?,CARD=?,Pin=? where MaHH =?";
+        String queryLap = "update ManHinh set Model=?,KetNoi=?,TanSoQuet=?,TiLeKhungHinh=?,LoaiMH=?,MauSacHienThi=? where MaHH =?";
         int kq2= jdbcTemplate.update(queryLap,new Object[]{hh.getModel(),hh.getKetNoi(),hh.getTanSoQuet(),hh.getTiLeKhungHinh(),
                 hh.getLoaiMH(),hh.getMauSacHienThi(),hh.getID()});
         return kq1+kq2;

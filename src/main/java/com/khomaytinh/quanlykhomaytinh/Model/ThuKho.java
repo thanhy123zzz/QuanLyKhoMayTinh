@@ -8,7 +8,7 @@ public class ThuKho extends Admin{
     private Double soTienTrenGio;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngayBatDauLam;
-    private Double luong;
+    private long luong;
 
     public Double getSoTienTrenGio() {
         return soTienTrenGio;
@@ -26,11 +26,11 @@ public class ThuKho extends Admin{
         this.ngayBatDauLam = ngayBatDauLam;
     }
 
-    public Double getLuong() {
+    public long getLuong() {
         return luong;
     }
 
-    public void setLuong(Double luong) {
+    public void setLuong(long luong) {
         this.luong = luong;
     }
 }

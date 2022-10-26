@@ -3,8 +3,8 @@ package com.khomaytinh.quanlykhomaytinh.Model;
 public class ChiTietPhieu {
     private HangHoa hangHoa;
     private int soLuong;
-    private Double donGia;
-    private Double thanhTien;
+    private long donGia;
+    private long thanhTien;
     private String idHangHoa;
 
     public String getIdHangHoa() {
@@ -31,19 +31,19 @@ public class ChiTietPhieu {
         this.soLuong = soLuong;
     }
 
-    public Double getDonGia() {
+    public long getDonGia() {
         return donGia;
     }
 
-    public void setDonGia(Double donGia) {
+    public void setDonGia(long donGia) {
         this.donGia = donGia;
     }
 
-    public Double getThanhTien() {
+    public long getThanhTien() {
         return thanhTien;
     }
 
-    public void setThanhTien(Double thanhTien) {
+    public void setThanhTien(long thanhTien) {
         this.thanhTien = thanhTien;
     }
 }

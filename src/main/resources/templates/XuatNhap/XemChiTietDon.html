@@ -93,7 +93,17 @@
                         </td>
 
                         <td style="vertical-align: middle" th:with="max=${hh.getHangHoa().getSoLuongCon()+hh.getSoLuong()}">
-                          <input class="soLuong" th:data-id="${stat.index}"
+                          <input th:if="${session.admin.getTaiKhoan().getRole().getMaRL()=='ADMIN'}"
+                                 class="soLuong" th:data-id="${stat.index}"
+                                 onchange="thanhTien(this.getAttribute('data-id'))"
+                                 th:id="${stat.index}"
+                                 th:name="|chiTietPhieus[${stat.index}].soLuong|"
+                                 type="number" min="1"
+                                 th:value="${hh.getSoLuong()}"
+                                 th:max="${max}"
+                                 style="width: 70px"/>
+                          <input th:unless="${session.admin.getTaiKhoan().getRole().getMaRL()=='ADMIN'}" readonly
+                                 class="soLuong" th:data-id="${stat.index}"
                                  onchange="thanhTien(this.getAttribute('data-id'))"
                                  th:id="${stat.index}"
                                  th:name="|chiTietPhieus[${stat.index}].soLuong|"
@@ -117,7 +127,11 @@
                                  type="text">
                         </td>
                         <td>
-                          <i th:data-id="${stat.index}" onclick="xoaRow(this.getAttribute('data-id'))" class="bi bi-x-lg" style="cursor: pointer"></i>
+                          <i sec:authorize="hasAnyRole('ROLE_ADMIN')"
+                             th:data-id="${stat.index}"
+                             onclick="xoaRow(this.getAttribute('data-id'))"
+                             class="bi bi-x-lg"
+                             style="cursor: pointer"></i>
                         </td>
                       </tr>
                   </tbody>

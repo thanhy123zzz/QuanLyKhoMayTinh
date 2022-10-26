@@ -6,17 +6,8 @@ import com.khomaytinh.quanlykhomaytinh.Model.Accounts;
 
 import com.khomaytinh.quanlykhomaytinh.Model.Admin;
 import com.khomaytinh.quanlykhomaytinh.Model.ThuKho;
-import com.khomaytinh.quanlykhomaytinh.Service.LapTopService;
-import com.khomaytinh.quanlykhomaytinh.Service.BanPhimService;
-import com.khomaytinh.quanlykhomaytinh.Service.ChuotService;
-import com.khomaytinh.quanlykhomaytinh.Service.LoaService;
-import com.khomaytinh.quanlykhomaytinh.Service.ManHinhService;
-import com.khomaytinh.quanlykhomaytinh.Service.PcService;
-import com.khomaytinh.quanlykhomaytinh.Service.TaiNgheService;
+import com.khomaytinh.quanlykhomaytinh.Service.*;
 
-import com.khomaytinh.quanlykhomaytinh.Service.LoginService;
-import com.khomaytinh.quanlykhomaytinh.Service.PersonService;
-import com.khomaytinh.quanlykhomaytinh.Service.XuatNhapServiec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.ModelAndView;
@@ -57,6 +48,8 @@ public class Common {
     PcService PcService;
     @Autowired
     TaiNgheService TaiNgheService;
+    @Autowired
+    ThongKeService thongKeService;
     Admin perSon(Principal principal){
         if(Objects.equals(loginService.CheckUserName(principal.getName()).getRole().getMaRL(), "ADMIN")){
             Admin admin = personService.showAdmin(principal.getName());

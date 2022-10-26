@@ -8,7 +8,7 @@ public class HangHoa {
     private String ID;
     private String ten;
     private String hangSX;
-    private Double gia;
+    private long gia;
     private Double trongLuong;
     private Blob hinhAnh;
     private int soLuongCon;
@@ -46,11 +46,11 @@ public class HangHoa {
         this.hangSX = hangSX;
     }
 
-    public Double getGia() {
+    public long getGia() {
         return gia;
     }
 
-    public void setGia(Double gia) {
+    public void setGia(long gia) {
         this.gia = gia;
     }
 

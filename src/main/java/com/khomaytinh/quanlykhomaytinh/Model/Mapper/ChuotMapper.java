@@ -14,7 +14,7 @@ public class ChuotMapper implements RowMapper<Chuot> {
         hh.setID(rs.getString("MAHH"));
         hh.setTen(rs.getString("Ten"));
         hh.setHangSX(rs.getString("HangSX"));
-        hh.setGia(rs.getDouble("Gia"));
+        hh.setGia((long)rs.getDouble("Gia"));
         hh.setHinhAnh(rs.getBlob("HinhAnh"));
         hh.setTrongLuong(rs.getDouble("TrongLuong"));
         hh.setSoLuongCon(rs.getInt("SoLuongCon"));

@@ -19,7 +19,7 @@ public class ThuKhoMapper implements RowMapper<ThuKho> {
         
         ad.setCCCD(rs.getString("CCCD"));
         ad.setNgayBatDauLam(rs.getDate("NgayBatDau"));
-        ad.setLuong(rs.getDouble("Luong"));
+        ad.setLuong((long)rs.getDouble("Luong"));
         ad.setSoTienTrenGio(rs.getDouble("SoTienTrenGio"));
         ad.setTaiKhoan(new Accounts(rs.getString("UserName")));
         
